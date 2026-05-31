@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MailFrame — Pricing</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #fff; color: #111; padding: 60px 24px; }
+    h1 { text-align: center; font-size: 36px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 8px; }
+    .sub { text-align: center; color: #888; font-size: 16px; margin-bottom: 48px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; max-width: 960px; margin: 0 auto; }
+    .card { border: 1px solid #eee; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 12px; }
+    .card.featured { border-color: #6c47ff; box-shadow: 0 0 0 1px #6c47ff; }
+    .plan { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: #888; }
+    .plan.featured { color: #6c47ff; }
+    .price { font-size: 36px; font-weight: 700; letter-spacing: -1px; }
+    .price span { font-size: 14px; font-weight: 400; color: #888; }
+    .desc { color: #555; font-size: 14px; line-height: 1.5; }
+    .btn { margin-top: auto; padding: 12px; border-radius: 10px; font-size: 14px; font-weight: 600; text-align: center; cursor: pointer; border: none; text-decoration: none; display: block; }
+    .btn-outline { border: 1px solid #eee; color: #111; background: #fff; }
+    .btn-filled { background: #6c47ff; color: #fff; }
+  </style>
+</head>
+<body>
+  <h1>Simple pricing</h1>
+  <p class="sub">Start free. Upgrade when you're ready.</p>
+  <div class="grid">
+    <div class="card">
+      <div class="plan">Free</div>
+      <div class="price">$0 <span>/mo</span></div>
+      <div class="desc">30 summaries/mo. Perfect for trying MailFrame.</div>
+      <a class="btn btn-outline" href="#">Install extension</a>
+    </div>
+    <div class="card featured">
+      <div class="plan featured">Pro</div>
+      <div class="price">$12 <span>/mo</span></div>
+      <div class="desc">500 summaries/mo. Kanban labels, relationship cards, promise tracker.</div>
+      <a class="btn btn-filled" href="#" onclick="checkout('pro')">Get Pro →</a>
+    </div>
+    <div class="card">
+      <div class="plan">Team</div>
+      <div class="price">$35 <span>/mo</span></div>
+      <div class="desc">2,000 summaries/mo. Everything in Pro for your whole team.</div>
+      <a class="btn btn-outline" href="#" onclick="checkout('team')">Get Team →</a>
+    </div>
+    <div class="card">
+      <div class="plan">Enterprise</div>
+      <div class="price">$89 <span>/mo</span></div>
+      <div class="desc">Unlimited summaries. Priority support and custom integrations.</div>
+      <a class="btn btn-outline" href="#" onclick="checkout('enterprise')">Get Enterprise →</a>
+    </div>
+  </div>
+  <script>
+    async function checkout(plan) {
+      const resp = await fetch('https://mailframe-proxy.onrender.com/v1/checkout', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({plan})
+      });
+      const data = await resp.json();
+      if (data.url) window.location.href = data.url;
+    }
+  </script>
+</body>
+</html>
