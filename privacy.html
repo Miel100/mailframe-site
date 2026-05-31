@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MailFrame — Privacy Policy</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #fff; color: #111; line-height: 1.7; }
+    header { padding: 24px 40px; border-bottom: 1px solid #eee; display: flex; align-items: center; gap: 10px; }
+    header span { font-size: 20px; font-weight: 600; letter-spacing: -0.3px; }
+    .dot { width: 8px; height: 8px; background: #6c47ff; border-radius: 50%; }
+    main { max-width: 720px; margin: 60px auto; padding: 0 24px 80px; }
+    h1 { font-size: 32px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 8px; }
+    .updated { color: #888; font-size: 14px; margin-bottom: 48px; }
+    h2 { font-size: 18px; font-weight: 600; margin: 36px 0 12px; }
+    p { color: #333; margin-bottom: 12px; font-size: 15px; }
+    ul { padding-left: 20px; color: #333; font-size: 15px; margin-bottom: 12px; }
+    ul li { margin-bottom: 6px; }
+    a { color: #6c47ff; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    footer { text-align: center; padding: 32px; border-top: 1px solid #eee; color: #888; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="dot"></div>
+    <span>MailFrame</span>
+  </header>
+  <main>
+    <h1>Privacy Policy</h1>
+    <p class="updated">Last updated: May 31, 2026</p>
+
+    <p>MailFrame is a Chrome extension that adds AI-powered summaries, kanban labels, and inbox intelligence to Gmail. We take your privacy seriously.</p>
+
+    <h2>What we access</h2>
+    <ul>
+      <li>Your Gmail thread content — only to generate summaries on demand</li>
+      <li>Your Google OAuth token — to apply labels to threads</li>
+      <li>Your email address — to identify your account</li>
+    </ul>
+
+    <h2>What we do NOT do</h2>
+    <ul>
+      <li>We do not store your email content</li>
+      <li>We do not sell your data to third parties</li>
+      <li>We do not read your emails in the background</li>
+      <li>We do not share your data with advertisers</li>
+    </ul>
+
+    <h2>How summaries work</h2>
+    <p>When you press S or click the MailFrame button, the current thread is sent to our proxy server, which forwards it to Anthropic's Claude API for summarization. The thread content is not stored after the summary is generated. All communication is encrypted via HTTPS.</p>
+
+    <h2>Data storage</h2>
+    <p>We store only your Gmail OAuth token (to apply labels) and your usage count (to enforce plan limits). We do not store email content, summaries, or any personally identifiable information beyond your email address.</p>
+
+    <h2>Third-party services</h2>
+    <ul>
+      <li><strong>Anthropic Claude</strong> — AI summarization (anthropic.com/privacy)</li>
+      <li><strong>Google Gmail API</strong> — label management (policies.google.com/privacy)</li>
+    </ul>
+
+    <h2>Your rights</h2>
+    <p>You can revoke MailFrame's Gmail access at any time via <a href="https://myaccount.google.com/permissions" target="_blank">Google Account Permissions</a>. To delete your account data, email us at <a href="mailto:privacy@mailframe.io">privacy@mailframe.io</a>.</p>
+
+    <h2>Contact</h2>
+    <p>For privacy questions: <a href="mailto:privacy@mailframe.io">privacy@mailframe.io</a></p>
+  </main>
+  <footer>
+    © 2026 MailFrame. All rights reserved.
+  </footer>
+</body>
+</html>
