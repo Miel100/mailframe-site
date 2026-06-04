@@ -17,6 +17,8 @@
     .copy { background: #6c47ff; color: #fff; border: none; border-radius: 8px; padding: 0 16px; font-size: 14px; font-weight: 600; cursor: pointer; white-space: nowrap; }
     .copy:hover { opacity: .9; }
     .muted { color: #888; font-size: 13.5px; }
+    .steps { text-align: left; max-width: 520px; margin: 20px auto 8px; padding-left: 22px; color: #333; font-size: 15px; line-height: 1.7; }
+    .steps li { margin-bottom: 4px; }
     .pill { display: inline-block; background: #6c47ff; color: #fff; padding: 12px 28px; border-radius: 100px; font-size: 15px; font-weight: 600; margin-top: 24px; text-decoration: none; }
     .spinner { display: inline-block; width: 18px; height: 18px; border: 2px solid #ddd; border-top-color: #6c47ff; border-radius: 50%; animation: spin .7s linear infinite; vertical-align: middle; }
     @keyframes spin { to { transform: rotate(360deg); } }
@@ -26,7 +28,7 @@
 <body>
   <div class="icon">🎉</div>
   <h1>You're in.</h1>
-  <p>Welcome to MailFrame. Your subscription is active.</p>
+  <p id="welcome">Welcome to MailFrame. Your subscription is active.</p>
 
   <div id="pending">
     <p><span class="spinner"></span> Finalizing your account…</p>
@@ -40,15 +42,23 @@
         <button class="copy" id="copy-btn">Copy</button>
       </div>
     </div>
-    <p class="muted">Open the MailFrame extension → <strong>Subscription</strong> and paste this key to activate. We've also emailed it to you.</p>
+    <p class="muted">We've also emailed this to you — keep it as your key record.</p>
+
+    <ol class="steps">
+      <li>Click the <strong>MailFrame icon</strong> in your browser toolbar.</li>
+      <li>Open <strong>Subscription</strong> and paste your key.</li>
+      <li>You'll see <strong>"Activated"</strong> with your plan.</li>
+    </ol>
+    <p>Then open any email in Gmail and press <strong>S</strong> for an instant summary.</p>
   </div>
 
   <div id="fallback">
-    <p>Your purchase is confirmed. We've emailed your activation key — paste it into the MailFrame extension → <strong>Subscription</strong>.</p>
+    <p>Your purchase is confirmed. We've emailed your activation key — paste it into the MailFrame extension → <strong>Subscription</strong>, then open any email and press <strong>S</strong>.</p>
     <p class="muted">Didn't get it? Contact <a href="mailto:MarteSit@proton.me">MarteSit@proton.me</a>.</p>
   </div>
 
   <a class="pill" href="https://mail.google.com">Open Gmail →</a>
+  <p class="muted" style="margin-top:18px">New to MailFrame? Read the <a href="faq.html">FAQ</a> · Support: <a href="mailto:MarteSit@proton.me">MarteSit@proton.me</a></p>
 
   <script>
     const PROXY = 'https://mailframe-proxy.onrender.com';
@@ -56,8 +66,11 @@
     const $ = (id) => document.getElementById(id);
 
     function show(id) { ['pending','key-section','fallback'].forEach(s => $(s).style.display = s === id ? 'block' : 'none'); }
+    function cap(s) { return s ? s[0].toUpperCase() + s.slice(1) : s; }
     function showKey(data) {
+      const tier = cap(data.tier || '');
       $('tier-name').textContent = data.tier || 'plan';
+      if (tier) $('welcome').textContent = `Welcome to MailFrame ${tier}.`;
       $('key-val').textContent = data.key;
       show('key-section');
     }
