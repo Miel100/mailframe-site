@@ -10,23 +10,30 @@
     h1 { text-align: center; font-size: 36px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 8px; }
     .sub { text-align: center; color: #888; font-size: 16px; margin-bottom: 48px; }
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; max-width: 960px; margin: 0 auto; }
-    .card { border: 1px solid #eee; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 12px; }
-    .card.featured { border-color: #6c47ff; box-shadow: 0 0 0 1px #6c47ff; }
+    .card { border: 1px solid #eee; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 12px; transition: transform .15s ease, box-shadow .15s ease; }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(17,24,39,.08); }
+    .card.featured { border-color: #2563eb; box-shadow: 0 0 0 1px #2563eb; }
+    .card.featured:hover { box-shadow: 0 0 0 1px #2563eb, 0 10px 28px rgba(37,99,235,.18); }
     .plan { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: #888; }
-    .plan.featured { color: #6c47ff; }
+    .plan.featured { color: #2563eb; }
     .price { font-size: 36px; font-weight: 700; letter-spacing: -1px; }
     .price span { font-size: 14px; font-weight: 400; color: #888; }
     .desc { color: #555; font-size: 14px; line-height: 1.5; }
     .feats { list-style: none; display: flex; flex-direction: column; gap: 7px; margin: 4px 0; }
     .feats li { color: #444; font-size: 13.5px; line-height: 1.4; padding-left: 20px; position: relative; }
-    .feats li::before { content: "✓"; position: absolute; left: 0; color: #6c47ff; font-weight: 700; }
+    .feats li::before { content: "✓"; position: absolute; left: 0; color: #2563eb; font-weight: 700; }
     .feats li.off { color: #bbb; }
     .feats li.off::before { content: "—"; color: #ccc; }
-    .btn { margin-top: auto; padding: 12px; border-radius: 10px; font-size: 14px; font-weight: 600; text-align: center; cursor: pointer; border: none; text-decoration: none; display: block; }
-    .btn-outline { border: 1px solid #eee; color: #111; background: #fff; }
-    .btn-filled { background: #6c47ff; color: #fff; }
+    .btn { margin-top: auto; padding: 12px; border-radius: 10px; font-size: 14px; font-weight: 600; text-align: center; cursor: pointer; border: none; text-decoration: none; display: block; transition: background .15s ease, color .15s ease, border-color .15s ease; }
+    /* Free: ghost — understated entry. Pro: filled blue — the hero. Business: filled purple — premium step-up. */
+    .btn-outline { border: 1.5px solid #2563eb; color: #2563eb; background: #fff; }
+    .btn-outline:hover { background: #eff6ff; }
+    .btn-filled { background: #2563eb; color: #fff; }
+    .btn-filled:hover { background: #1d4ed8; }
+    .btn-business { background: #6c47ff; color: #fff; }
+    .btn-business:hover { background: #5a37e0; }
     .contact { text-align: center; color: #888; font-size: 14px; margin: 36px auto 0; max-width: 960px; }
-    .contact a { color: #6c47ff; text-decoration: none; font-weight: 600; }
+    .contact a { color: #2563eb; text-decoration: none; font-weight: 600; }
   </style>
 </head>
 <body>
@@ -65,7 +72,7 @@
         <li>1,000 document &amp; order extractions / month</li>
         <li>Everything in Pro</li>
       </ul>
-      <a class="btn btn-outline" href="javascript:void(0)" onclick="checkout('business')">Get Business →</a>
+      <a class="btn btn-business" href="javascript:void(0)" onclick="checkout('business')">Get Business →</a>
     </div>
   </div>
   <p class="contact">Need higher volume? <a href="mailto:MarteSit@proton.me?subject=MailFrame%20custom%20volume">Contact us</a> for custom pricing.</p>
