@@ -17,9 +17,16 @@
     .price { font-size: 36px; font-weight: 700; letter-spacing: -1px; }
     .price span { font-size: 14px; font-weight: 400; color: #888; }
     .desc { color: #555; font-size: 14px; line-height: 1.5; }
+    .feats { list-style: none; display: flex; flex-direction: column; gap: 7px; margin: 4px 0; }
+    .feats li { color: #444; font-size: 13.5px; line-height: 1.4; padding-left: 20px; position: relative; }
+    .feats li::before { content: "✓"; position: absolute; left: 0; color: #6c47ff; font-weight: 700; }
+    .feats li.off { color: #bbb; }
+    .feats li.off::before { content: "—"; color: #ccc; }
     .btn { margin-top: auto; padding: 12px; border-radius: 10px; font-size: 14px; font-weight: 600; text-align: center; cursor: pointer; border: none; text-decoration: none; display: block; }
     .btn-outline { border: 1px solid #eee; color: #111; background: #fff; }
     .btn-filled { background: #6c47ff; color: #fff; }
+    .contact { text-align: center; color: #888; font-size: 14px; margin: 36px auto 0; max-width: 960px; }
+    .contact a { color: #6c47ff; text-decoration: none; font-weight: 600; }
   </style>
 </head>
 <body>
@@ -29,28 +36,39 @@
     <div class="card">
       <div class="plan">Free</div>
       <div class="price">$0 <span>/mo</span></div>
-      <div class="desc">30 summaries/mo. Perfect for trying MailFrame.</div>
+      <ul class="feats">
+        <li>30 summaries / month</li>
+        <li>3 document &amp; order extractions / month</li>
+        <li>Add events to calendar</li>
+        <li class="off">Daily digest, relationship &amp; promise tracking</li>
+        <li class="off">Batch mode</li>
+      </ul>
       <a class="btn btn-outline" href="#">Install extension</a>
     </div>
     <div class="card featured">
       <div class="plan featured">Pro</div>
       <div class="price">$12 <span>/mo</span></div>
-      <div class="desc">500 summaries/mo. Kanban labels, relationship cards, promise tracker.</div>
+      <ul class="feats">
+        <li>1,000 summaries / month</li>
+        <li>30 document &amp; order extractions / month</li>
+        <li>Add events to calendar</li>
+        <li>Daily digest, relationship &amp; promise tracking</li>
+        <li>Batch mode</li>
+      </ul>
       <a class="btn btn-filled" href="javascript:void(0)" onclick="checkout('pro')">Get Pro →</a>
     </div>
     <div class="card">
-      <div class="plan">Team</div>
-      <div class="price">$35 <span>/mo</span></div>
-      <div class="desc">2,000 summaries/mo. Everything in Pro for your whole team.</div>
-      <a class="btn btn-outline" href="javascript:void(0)" onclick="checkout('team')">Get Team →</a>
-    </div>
-    <div class="card">
-      <div class="plan">Enterprise</div>
-      <div class="price">$89 <span>/mo</span></div>
-      <div class="desc">Unlimited summaries. Priority support and custom integrations.</div>
-      <a class="btn btn-outline" href="javascript:void(0)" onclick="checkout('enterprise')">Get Enterprise →</a>
+      <div class="plan">Business</div>
+      <div class="price">$79 <span>/mo</span></div>
+      <ul class="feats">
+        <li>1,000 summaries / month</li>
+        <li>1,000 document &amp; order extractions / month</li>
+        <li>Everything in Pro</li>
+      </ul>
+      <a class="btn btn-outline" href="javascript:void(0)" onclick="checkout('business')">Get Business →</a>
     </div>
   </div>
+  <p class="contact">Need higher volume? <a href="mailto:doungalageorges+mailframe@gmail.com?subject=MailFrame%20custom%20volume">Contact us</a> for custom pricing.</p>
   <script>
     async function checkout(plan) {
       const resp = await fetch('https://mailframe-proxy.onrender.com/v1/checkout', {
