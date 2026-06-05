@@ -1,6 +1,6 @@
 # Support — canned replies (internal)
 
-Paste-and-tweak responses for `MarteSit@proton.me`. **Not published** — internal only.
+Paste-and-tweak responses for `support@mailframe.org`. **Not published** — internal only.
 Public-facing answers live in `faq.html`. Sign off as **MailFrame**.
 
 ---
