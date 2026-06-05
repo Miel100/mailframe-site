@@ -12,28 +12,29 @@
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; max-width: 960px; margin: 0 auto; }
     .card { border: 1px solid #eee; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 12px; transition: transform .15s ease, box-shadow .15s ease; }
     .card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(17,24,39,.08); }
-    .card.featured { border-color: #2563eb; box-shadow: 0 0 0 1px #2563eb; }
-    .card.featured:hover { box-shadow: 0 0 0 1px #2563eb, 0 10px 28px rgba(37,99,235,.18); }
+    .card.featured { border-color: #2b6cb0; box-shadow: 0 0 0 1px #2b6cb0; }
+    .card.featured:hover { box-shadow: 0 0 0 1px #2b6cb0, 0 10px 28px rgba(43,108,176,.18); }
     .plan { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: #888; }
-    .plan.featured { color: #2563eb; }
+    .plan.featured { color: #2b6cb0; }
+    .badge { display: inline-block; margin-left: 8px; padding: 2px 8px; border-radius: 999px; background: #2b6cb0; color: #fff; font-size: 10px; font-weight: 700; letter-spacing: 0.04em; vertical-align: middle; }
     .price { font-size: 36px; font-weight: 700; letter-spacing: -1px; }
     .price span { font-size: 14px; font-weight: 400; color: #888; }
     .desc { color: #555; font-size: 14px; line-height: 1.5; }
     .feats { list-style: none; display: flex; flex-direction: column; gap: 7px; margin: 4px 0; }
     .feats li { color: #444; font-size: 13.5px; line-height: 1.4; padding-left: 20px; position: relative; }
-    .feats li::before { content: "✓"; position: absolute; left: 0; color: #2563eb; font-weight: 700; }
+    .feats li::before { content: "✓"; position: absolute; left: 0; color: #2b6cb0; font-weight: 700; }
     .feats li.off { color: #bbb; }
     .feats li.off::before { content: "—"; color: #ccc; }
-    .btn { margin-top: auto; padding: 12px; border-radius: 10px; font-size: 14px; font-weight: 600; text-align: center; cursor: pointer; border: none; text-decoration: none; display: block; transition: background .15s ease, color .15s ease, border-color .15s ease; }
-    /* Free: ghost — understated entry. Pro: filled blue — the hero. Business: filled purple — premium step-up. */
-    .btn-outline { border: 1.5px solid #2563eb; color: #2563eb; background: #fff; }
-    .btn-outline:hover { background: #eff6ff; }
-    .btn-filled { background: #2563eb; color: #fff; }
-    .btn-filled:hover { background: #1d4ed8; }
-    .btn-business { background: #6c47ff; color: #fff; }
-    .btn-business:hover { background: #5a37e0; }
+    .btn { margin-top: auto; padding: 12px 16px; border-radius: 8px; font-size: 14px; font-weight: 600; text-align: center; cursor: pointer; border: 1.5px solid transparent; text-decoration: none; display: block; transition: background .15s ease, border-color .15s ease, transform .15s ease, box-shadow .15s ease; }
+    /* Tier hierarchy — stepping up a tier goes visually deeper: blue outline (Free) → blue (Pro) → navy (Business). Same shape/weight, one family. */
+    .btn-outline  { background: #fff;     color: #2b6cb0; border-color: #2b6cb0; }
+    .btn-outline:hover  { background: #eef5fb; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(43,108,176,.15); }
+    .btn-filled   { background: #2b6cb0; color: #fff;     border-color: #245d96; }
+    .btn-filled:hover   { background: #245d96; transform: translateY(-1px); box-shadow: 0 6px 16px rgba(43,108,176,.28); }
+    .btn-business { background: #1a365d; color: #fff;     border-color: #142b4d; }
+    .btn-business:hover { background: #142b4d; transform: translateY(-1px); box-shadow: 0 6px 16px rgba(26,54,93,.30); }
     .contact { text-align: center; color: #888; font-size: 14px; margin: 36px auto 0; max-width: 960px; }
-    .contact a { color: #2563eb; text-decoration: none; font-weight: 600; }
+    .contact a { color: #2b6cb0; text-decoration: none; font-weight: 600; }
   </style>
 </head>
 <body>
@@ -53,7 +54,7 @@
       <a class="btn btn-outline" href="#">Install extension</a>
     </div>
     <div class="card featured">
-      <div class="plan featured">Pro</div>
+      <div class="plan featured">Pro <span class="badge">Recommended</span></div>
       <div class="price">$12 <span>/mo</span></div>
       <ul class="feats">
         <li>1,000 summaries / month</li>
