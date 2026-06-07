@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MailFrame — You're in</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #fff; color: #111; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; text-align: center; padding: 24px; }
@@ -23,9 +26,14 @@
     .spinner { display: inline-block; width: 18px; height: 18px; border: 2px solid #ddd; border-top-color: #2b6cb0; border-radius: 50%; animation: spin .7s linear infinite; vertical-align: middle; }
     @keyframes spin { to { transform: rotate(360deg); } }
     #key-section, #pending, #fallback { display: none; }
+    .site-brand { display: inline-flex; align-items: center; gap: 9px; text-decoration: none; color: #111; font-weight: 500; font-size: 17px; letter-spacing: -0.3px; margin-bottom: 28px; }
   </style>
 </head>
 <body>
+  <a class="site-brand" href="/">
+    <svg width="26" height="26" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><polygon points="64,12 109,38 109,90 64,116 19,90 19,38" fill="#2b6cb0"/><path d="M44 64 L58 78 L86 44" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span>MailFrame</span>
+  </a>
   <div class="icon">🎉</div>
   <h1>You're in.</h1>
   <p id="welcome">Welcome to MailFrame. Your subscription is active.</p>
