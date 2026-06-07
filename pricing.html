@@ -7,51 +7,99 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #fff; color: #111; padding: 60px 24px; }
-    h1 { text-align: center; font-size: 36px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 8px; }
-    .sub { text-align: center; color: #888; font-size: 16px; margin-bottom: 48px; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; max-width: 960px; margin: 0 auto; }
-    .card { border: 1px solid #eee; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 12px; transition: transform .15s ease, box-shadow .15s ease; }
-    .card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(17,24,39,.08); }
-    .card.featured { border-color: #2b6cb0; box-shadow: 0 0 0 1px #2b6cb0; }
-    .card.featured:hover { box-shadow: 0 0 0 1px #2b6cb0, 0 10px 28px rgba(43,108,176,.18); }
-    .plan { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: #888; }
-    .plan.featured { color: #2b6cb0; }
-    .badge { display: inline-block; margin-left: 8px; padding: 2px 8px; border-radius: 999px; background: #2b6cb0; color: #fff; font-size: 10px; font-weight: 700; letter-spacing: 0.04em; vertical-align: middle; }
-    .price { font-size: 36px; font-weight: 700; letter-spacing: -1px; }
-    .price span { font-size: 14px; font-weight: 400; color: #888; }
-    .desc { color: #555; font-size: 14px; line-height: 1.5; }
-    .feats { list-style: none; display: flex; flex-direction: column; gap: 7px; margin: 4px 0; }
-    .feats li { color: #444; font-size: 13.5px; line-height: 1.4; padding-left: 20px; position: relative; }
-    .feats li::before { content: "✓"; position: absolute; left: 0; color: #2b6cb0; font-weight: 700; }
-    .feats li.off { color: #bbb; }
-    .feats li.off::before { content: "—"; color: #ccc; }
-    .btn { margin-top: auto; padding: 12px 16px; border-radius: 8px; font-size: 14px; font-weight: 600; text-align: center; cursor: pointer; border: 1.5px solid transparent; text-decoration: none; display: block; transition: background .15s ease, border-color .15s ease, transform .15s ease, box-shadow .15s ease; }
-    /* Tier hierarchy — stepping up a tier goes visually deeper: blue outline (Free) → blue (Pro) → navy (Business). Same shape/weight, one family. */
-    .btn-outline  { background: #fff;     color: #2b6cb0; border-color: #2b6cb0; }
-    .btn-outline:hover  { background: #eef5fb; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(43,108,176,.15); }
-    .btn-filled   { background: #2b6cb0; color: #fff;     border-color: #245d96; }
-    .btn-filled:hover   { background: #245d96; transform: translateY(-1px); box-shadow: 0 6px 16px rgba(43,108,176,.28); }
-    .btn-business { background: #1a365d; color: #fff;     border-color: #142b4d; }
-    .btn-business:hover { background: #142b4d; transform: translateY(-1px); box-shadow: 0 6px 16px rgba(26,54,93,.30); }
-    .contact { text-align: center; color: #888; font-size: 14px; margin: 36px auto 0; max-width: 960px; }
-    .contact a { color: #2b6cb0; text-decoration: none; font-weight: 600; }
-    .site-header { text-align: center; margin-bottom: 40px; }
-    .site-brand { display: inline-flex; align-items: center; gap: 9px; text-decoration: none; color: #111; font-weight: 500; font-size: 17px; letter-spacing: -0.3px; }
+    :root {
+      --blue: #2b6cb0; --blue-d: #245d96; --blue-100: #eaf2fb;
+      --purple: #6c47ff; --purple-d: #5a37e0; --purple-100: #f1edff;
+      --navy: #1a365d; --ink: #0c1322; --muted: #5b6677; --faint: #8b94a3;
+      --line: #e9edf3; --bg: #fff; --off: #f7f9fc; --radius: 16px;
+      --shadow-sm: 0 1px 2px rgba(12,19,34,.05), 0 4px 14px rgba(12,19,34,.05);
+      --shadow-lg: 0 18px 50px rgba(12,19,34,.14);
+      --ease: .18s cubic-bezier(.4,0,.2,1);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    a { color: var(--blue); text-decoration: none; }
+    .nav { position: sticky; top: 0; z-index: 50; backdrop-filter: saturate(180%) blur(12px); background: rgba(255,255,255,.75); border-bottom: 1px solid var(--line); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; max-width: 1080px; margin: 0 auto; padding: 14px 24px; }
+    .brand { display: flex; align-items: center; gap: 9px; font-weight: 600; font-size: 16px; letter-spacing: -0.3px; color: var(--ink); }
+    .nav-right { display: flex; align-items: center; gap: 24px; }
+    .nav-links { display: flex; gap: 22px; font-size: 14px; font-weight: 500; }
+    .nav-links a { color: var(--muted); transition: color var(--ease); }
+    .nav-links a:hover { color: var(--ink); }
+    .btn { padding: 11px 20px; border-radius: 10px; font-size: 14.5px; font-weight: 600; font-family: inherit; border: 1.5px solid transparent; cursor: pointer; transition: background var(--ease), transform var(--ease), box-shadow var(--ease), border-color var(--ease); display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+    .btn-primary { background: var(--blue); color: #fff; border-color: var(--blue-d); box-shadow: 0 1px 2px rgba(43,108,176,.25); }
+    .btn-primary:hover { background: var(--blue-d); transform: translateY(-1px); box-shadow: 0 8px 20px rgba(43,108,176,.30); }
+    .btn-sm { padding: 8px 16px; font-size: 14px; border-radius: 9px; }
+
+    .page-head { text-align: center; padding: 64px 24px 8px; }
+    .page-head h1 { font-size: 42px; font-weight: 800; letter-spacing: -1.2px; }
+    .page-head p { color: var(--muted); font-size: 18px; margin-top: 10px; }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; max-width: 1000px; margin: 44px auto 0; padding: 0 24px; align-items: start; }
+    .card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 30px 26px; display: flex; flex-direction: column; gap: 14px; transition: transform var(--ease), box-shadow var(--ease), border-color var(--ease); }
+    .card:hover { transform: translateY(-4px); box-shadow: var(--shadow-sm); border-color: #dbe2ea; }
+    .card.featured { border-color: var(--blue); box-shadow: 0 0 0 1.5px var(--blue), var(--shadow-sm); }
+    .card.featured:hover { box-shadow: 0 0 0 1.5px var(--blue), 0 12px 30px rgba(43,108,176,.16); }
+    .plan { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .6px; color: var(--faint); display: flex; align-items: center; gap: 8px; }
+    .plan.featured { color: var(--blue); }
+    .rec { font-size: 10px; font-weight: 700; letter-spacing: .04em; color: #fff; background: var(--blue); border-radius: 999px; padding: 2px 9px; }
+    .price { font-size: 38px; font-weight: 800; letter-spacing: -1.2px; }
+    .price span { font-size: 14px; font-weight: 500; color: var(--faint); }
+    .feats { list-style: none; display: flex; flex-direction: column; gap: 9px; margin: 2px 0 4px; }
+    .feats li { color: #36404f; font-size: 14px; line-height: 1.45; padding-left: 24px; position: relative; }
+    .feats li::before { content: "✓"; position: absolute; left: 1px; color: var(--blue); font-weight: 700; }
+    .feats li.off { color: #aab2bd; }
+    .feats li.off::before { content: "–"; color: #cdd3db; }
+
+    /* Tier ladder: stepping up goes visually deeper — blue outline (Free) → blue (Pro) → navy (Business). */
+    .btn-tier { margin-top: auto; width: 100%; }
+    .btn-outline { background: #fff; color: var(--blue); border-color: var(--blue); }
+    .btn-outline:hover { background: var(--blue-100); transform: translateY(-1px); }
+    .btn-filled { background: var(--blue); color: #fff; border-color: var(--blue-d); box-shadow: 0 1px 2px rgba(43,108,176,.25); }
+    .btn-filled:hover { background: var(--blue-d); transform: translateY(-1px); box-shadow: 0 8px 20px rgba(43,108,176,.28); }
+    .btn-business { background: var(--navy); color: #fff; border-color: #142b4d; }
+    .btn-business:hover { background: #142b4d; transform: translateY(-1px); box-shadow: 0 8px 20px rgba(26,54,93,.30); }
+
+    .contact { text-align: center; color: var(--muted); font-size: 14px; margin: 30px auto 0; max-width: 1000px; padding: 0 24px; }
+    .contact a { color: var(--blue); font-weight: 600; }
+
+    footer.site { border-top: 1px solid var(--line); margin-top: 64px; }
+    .foot-inner { max-width: 1080px; margin: 0 auto; padding: 28px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; color: var(--muted); font-size: 14px; }
+    .foot-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    .foot-links a { color: var(--muted); transition: color var(--ease); }
+    .foot-links a:hover { color: var(--blue); }
+    @media (max-width: 640px) { .nav-links { display: none; } .page-head h1 { font-size: 34px; } }
   </style>
 </head>
 <body>
-  <header class="site-header">
-    <a class="site-brand" href="/">
-      <svg width="26" height="26" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><polygon points="64,12 109,38 109,90 64,116 19,90 19,38" fill="#2b6cb0"/><path d="M44 64 L58 78 L86 44" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <span>MailFrame</span>
-    </a>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="/">
+        <svg width="30" height="30" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><polygon points="64,12 109,38 109,90 64,116 19,90 19,38" fill="#2b6cb0"/><path d="M44 64 L58 78 L86 44" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        MailFrame
+      </a>
+      <div class="nav-right">
+        <div class="nav-links">
+          <a href="pricing.html">Pricing</a>
+          <a href="faq.html">FAQ</a>
+        </div>
+        <a class="btn btn-primary btn-sm" href="#plans">Get started</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="page-head">
+    <h1>Simple pricing</h1>
+    <p>Start free. Upgrade when you're ready.</p>
   </header>
-  <h1>Simple pricing</h1>
-  <p class="sub">Start free. Upgrade when you're ready.</p>
-  <div class="grid">
+
+  <div class="grid" id="plans">
     <div class="card">
       <div class="plan">Free</div>
       <div class="price">$0 <span>/mo</span></div>
@@ -62,10 +110,10 @@
         <li class="off">Daily digest, relationship &amp; promise tracking</li>
         <li class="off">Batch mode</li>
       </ul>
-      <a class="btn btn-outline" href="#">Install extension</a>
+      <a class="btn btn-tier btn-outline" href="#">Install extension</a>
     </div>
     <div class="card featured">
-      <div class="plan featured">Pro <span class="badge">Recommended</span></div>
+      <div class="plan featured">Pro <span class="rec">Recommended</span></div>
       <div class="price">$12 <span>/mo</span></div>
       <ul class="feats">
         <li>1,000 summaries / month</li>
@@ -74,7 +122,7 @@
         <li>Daily digest, relationship &amp; promise tracking</li>
         <li>Batch mode</li>
       </ul>
-      <a class="btn btn-filled" href="javascript:void(0)" onclick="checkout('pro')">Get Pro →</a>
+      <a class="btn btn-tier btn-filled" href="javascript:void(0)" onclick="checkout('pro')">Get Pro →</a>
     </div>
     <div class="card">
       <div class="plan">Business</div>
@@ -84,12 +132,29 @@
         <li>1,000 document &amp; order extractions / month</li>
         <li>Everything in Pro</li>
       </ul>
-      <a class="btn btn-business" href="javascript:void(0)" onclick="checkout('business')">Get Business →</a>
+      <a class="btn btn-tier btn-business" href="javascript:void(0)" onclick="checkout('business')">Get Business →</a>
     </div>
   </div>
+
   <p class="contact">Need higher volume? <a href="mailto:support@mailframe.org?subject=MailFrame%20custom%20volume">Contact us</a> for custom pricing.</p>
   <p class="contact">Questions? Read the <a href="faq.html">FAQ</a>.</p>
-  <p class="contact" style="font-size:13px; margin-top:6px;"><a href="terms.html">Terms</a> · <a href="privacy.html">Privacy</a></p>
+
+  <footer class="site">
+    <div class="foot-inner">
+      <a class="brand" href="/" style="font-weight:500;color:var(--muted)">
+        <svg width="22" height="22" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><polygon points="64,12 109,38 109,90 64,116 19,90 19,38" fill="#2b6cb0"/><path d="M44 64 L58 78 L86 44" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        © MailFrame
+      </a>
+      <div class="foot-links">
+        <a href="pricing.html">Pricing</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="faq.html">FAQ</a>
+        <a href="mailto:support@mailframe.org">support@mailframe.org</a>
+      </div>
+    </div>
+  </footer>
+
   <script>
     async function checkout(plan) {
       const resp = await fetch('https://mailframe-proxy.onrender.com/v1/checkout', {
