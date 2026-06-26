@@ -8,6 +8,19 @@
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <meta name="description" content="MailFrame is a Gmail side-panel that summarizes threads with AI, organizes your inbox, extracts orders and invoices, and surfaces what needs attention — right where you read email. Your email is processed on demand and never stored.">
+  <link rel="canonical" href="https://mailframe.org/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="MailFrame">
+  <meta property="og:title" content="MailFrame — AI intelligence for your Gmail">
+  <meta property="og:description" content="A Gmail side-panel that summarizes threads with AI, flags what's urgent, and extracts orders and invoices — right where you read email. Processed on demand, never stored.">
+  <meta property="og:url" content="https://mailframe.org/">
+  <meta property="og:image" content="https://mailframe.org/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MailFrame — AI intelligence for your Gmail">
+  <meta name="twitter:description" content="A Gmail side-panel that summarizes threads with AI, flags what's urgent, and extracts orders and invoices — right where you read email.">
+  <meta name="twitter:image" content="https://mailframe.org/og-image.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -97,9 +110,9 @@
     .psec ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
     .psec li { position: relative; padding-left: 16px; font-size: 13px; color: #36404f; line-height: 1.45; }
     .psec li::before { content: ''; position: absolute; left: 0; top: 7px; width: 5px; height: 5px; border-radius: 50%; background: #c7cdd6; }
-    .kanban { display: flex; gap: 6px; padding-top: 12px; border-top: 1px solid var(--line); }
-    .kbtn { flex: 1; text-align: center; font-size: 11px; font-weight: 600; padding: 7px 0; border-radius: 8px; border: 1px solid var(--line); color: var(--muted); }
-    .kbtn.on { background: var(--blue-100); border-color: #cfe0f3; color: var(--blue-d); }
+    .priority { display: flex; gap: 6px; padding-top: 12px; border-top: 1px solid var(--line); }
+    .plvl { flex: 1; text-align: center; font-size: 11px; font-weight: 600; padding: 7px 0; border-radius: 8px; border: 1px solid var(--line); color: var(--muted); }
+    .plvl.on { background: #fdeaea; border-color: #f7caca; color: #dc2626; }
 
     /* ── Features ── */
     section.features { padding: 72px 0 24px; }
@@ -140,6 +153,22 @@
       .mock-wrap { order: 2; }
     }
   </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "MailFrame",
+    "applicationCategory": "BrowserApplication",
+    "operatingSystem": "Chrome",
+    "url": "https://mailframe.org/",
+    "description": "MailFrame is a Gmail side-panel that summarizes email threads with AI, flags each thread's priority, extracts orders and invoices, and surfaces what needs attention — right where you read email. Email is processed on demand and never stored.",
+    "offers": [
+      { "@type": "Offer", "name": "Free", "price": "0", "priceCurrency": "USD" },
+      { "@type": "Offer", "name": "Pro", "price": "12", "priceCurrency": "USD" },
+      { "@type": "Offer", "name": "Business", "price": "79", "priceCurrency": "USD" }
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -164,7 +193,7 @@
       <div class="hero-copy">
         <span class="eyebrow"><span class="dot"></span> AI intelligence for Gmail</span>
         <h1>Make sense of your inbox <span class="grad">in seconds.</span></h1>
-        <p class="lede">MailFrame adds an AI side-panel to Gmail — instant thread summaries, smart organization, and order extraction, right where you read your email.</p>
+        <p class="lede">MailFrame adds an AI side-panel to Gmail — instant thread summaries, priority at a glance, and order extraction, right where you read your email.</p>
         <div class="cta">
           <a class="btn btn-primary" href="pricing.html">Get started</a>
           <a class="btn btn-ghost" aria-disabled="true" title="Coming soon — not yet on the Chrome Web Store">Add to Chrome <span class="soon">Soon</span></a>
@@ -200,10 +229,10 @@
                 <li>Counter-sign the agreement and reply by Fri.</li>
               </ul>
             </div>
-            <div class="kanban">
-              <div class="kbtn">✓ Decided</div>
-              <div class="kbtn on">⏳ Pending</div>
-              <div class="kbtn">→ My Move</div>
+            <div class="priority">
+              <div class="plvl on">● High</div>
+              <div class="plvl">Normal</div>
+              <div class="plvl">Low</div>
             </div>
           </div>
         </div>
@@ -225,8 +254,8 @@
       </div>
       <div class="card">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="5" height="16" rx="1.5"/><rect x="10" y="4" width="5" height="11" rx="1.5"/><rect x="17" y="4" width="4" height="14" rx="1.5"/></svg></div>
-        <h3>Smart organization</h3>
-        <p>Threads sort themselves onto a clean kanban — decided, pending, your move — so nothing important slips through.</p>
+        <h3>Priority indicator</h3>
+        <p>Every thread gets a clear priority — High, Normal, or Low — based on what's at stake and who's waiting on you, so you know what to open first.</p>
       </div>
       <div class="card">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/></svg></div>

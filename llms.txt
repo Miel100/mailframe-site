@@ -1,0 +1,23 @@
+# MailFrame
+
+> MailFrame is a Chrome extension that adds an AI side-panel to Gmail. It summarizes email threads, flags each thread's priority, extracts orders and invoices, and surfaces what needs attention — right where you read email. Email is processed on demand and is never stored.
+
+## Pages
+
+- [Home](https://mailframe.org/): Product overview and features
+- [Pricing](https://mailframe.org/pricing.html): Free, Pro ($12/mo), and Business ($79/mo) plans
+- [FAQ](https://mailframe.org/faq.html): Install, activation, privacy, supported languages, plans, and troubleshooting
+- [Privacy Policy](https://mailframe.org/privacy.html): How your data is handled
+- [Terms of Service](https://mailframe.org/terms.html): Terms governing use of the extension and website
+
+## Features
+
+- Instant thread summaries — decisions, open questions, and your next move (press S)
+- Priority indicator — every thread flagged High, Normal, or Low
+- Focus reader — distraction-free text with optional bionic reading
+- Order & document extraction — line items, totals, and dates exported to CSV
+- Daily brief — a short rundown of the threads that need you
+
+## Contact
+
+- Email: support@mailframe.org
