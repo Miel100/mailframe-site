@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sentra — Pricing</title>
+<meta name="description" content="Sentra pricing — prepaid credits, pay as you go. A verification and containment checkpoint your high-value actions pass before they happen. Buy a credit pack, spend as you go, no subscription.">
+<link rel="canonical" href="https://mailframe.org/sentra.html">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --blue: #2b6cb0; --blue-d: #245d96; --blue-100: #eaf2fb;
+  --purple: #6c47ff; --purple-d: #5a37e0; --purple-100: #f1edff;
+  --navy: #1a365d; --ink: #0c1322; --muted: #5b6677; --faint: #8b94a3;
+  --line: #e9edf3; --bg: #fff; --off: #f7f9fc; --radius: 16px;
+  --shadow-sm: 0 1px 2px rgba(12,19,34,.05), 0 4px 14px rgba(12,19,34,.05);
+  --shadow-lg: 0 18px 50px rgba(12,19,34,.14);
+  --ease: .18s cubic-bezier(.4,0,.2,1);
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+a { color: var(--purple); text-decoration: none; }
+.nav { position: sticky; top: 0; z-index: 50; backdrop-filter: saturate(180%) blur(12px); background: rgba(255,255,255,.75); border-bottom: 1px solid var(--line); }
+.nav-inner { display: flex; align-items: center; justify-content: space-between; max-width: 1080px; margin: 0 auto; padding: 14px 24px; }
+.brand { display: flex; align-items: center; gap: 9px; font-weight: 600; font-size: 16px; letter-spacing: -0.3px; color: var(--ink); }
+.nav-right { display: flex; align-items: center; gap: 24px; }
+.nav-links { display: flex; gap: 22px; font-size: 14px; font-weight: 500; }
+.nav-links a { color: var(--muted); transition: color var(--ease); }
+.nav-links a:hover { color: var(--ink); }
+.btn { padding: 11px 20px; border-radius: 10px; font-size: 14.5px; font-weight: 600; font-family: inherit; border: 1.5px solid transparent; cursor: pointer; transition: background var(--ease), transform var(--ease), box-shadow var(--ease), border-color var(--ease); display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+.btn-primary { background: var(--purple); color: #fff; border-color: var(--purple-d); box-shadow: 0 1px 2px rgba(108,71,255,.25); }
+.btn-primary:hover { background: var(--purple-d); transform: translateY(-1px); box-shadow: 0 8px 20px rgba(108,71,255,.30); }
+.btn-sm { padding: 8px 16px; font-size: 14px; border-radius: 9px; }
+.page-head { text-align: center; padding: 64px 24px 8px; }
+.eyebrow { display: inline-block; font-size: 12.5px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--purple); background: var(--purple-100); padding: 6px 12px; border-radius: 999px; margin-bottom: 16px; }
+.page-head h1 { font-size: 42px; font-weight: 800; letter-spacing: -1.2px; line-height: 1.12; }
+.page-head p { color: var(--muted); font-size: 18px; margin: 12px auto 0; max-width: 620px; }
+.chips { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 26px auto 0; max-width: 720px; }
+.chip { background: var(--off); border: 1px solid var(--line); border-radius: 999px; padding: 8px 15px; font-size: 13.5px; color: var(--navy); font-weight: 500; }
+.chip b { color: var(--ink); font-weight: 700; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; max-width: 1000px; margin: 44px auto 0; padding: 0 24px; align-items: start; }
+.card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 30px 26px; display: flex; flex-direction: column; gap: 14px; transition: transform var(--ease), box-shadow var(--ease), border-color var(--ease); }
+.card:hover { transform: translateY(-4px); box-shadow: var(--shadow-sm); border-color: #dbe2ea; }
+.card.featured { border-color: var(--purple); box-shadow: 0 0 0 1.5px var(--purple), var(--shadow-sm); }
+.card.featured:hover { box-shadow: 0 0 0 1.5px var(--purple), 0 12px 30px rgba(108,71,255,.16); }
+.plan { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .6px; color: var(--faint); display: flex; align-items: center; gap: 8px; }
+.plan.featured { color: var(--purple); }
+.rec { font-size: 10px; font-weight: 700; letter-spacing: .04em; color: #fff; background: var(--purple); border-radius: 999px; padding: 2px 9px; }
+.price { font-size: 38px; font-weight: 800; letter-spacing: -1.2px; }
+.price span { font-size: 14px; font-weight: 500; color: var(--faint); }
+.credits { font-size: 15px; font-weight: 700; color: var(--navy); margin-top: -6px; }
+.rate { font-size: 12.5px; color: var(--faint); margin-top: -8px; }
+.feats { list-style: none; display: flex; flex-direction: column; gap: 9px; margin: 2px 0 4px; }
+.feats li { color: #36404f; font-size: 14px; line-height: 1.45; padding-left: 24px; position: relative; }
+.feats li::before { content: "✓"; position: absolute; left: 1px; color: var(--purple); font-weight: 700; }
+.btn-tier { margin-top: auto; width: 100%; }
+.btn-outline { background: #fff; color: var(--purple); border-color: var(--purple); }
+.btn-outline:hover { background: var(--purple-100); transform: translateY(-1px); }
+.btn-filled { background: var(--purple); color: #fff; border-color: var(--purple-d); box-shadow: 0 1px 2px rgba(108,71,255,.25); }
+.btn-filled:hover { background: var(--purple-d); transform: translateY(-1px); box-shadow: 0 8px 20px rgba(108,71,255,.28); }
+.btn-navy { background: var(--navy); color: #fff; border-color: #142b4d; }
+.btn-navy:hover { background: #142b4d; transform: translateY(-1px); box-shadow: 0 8px 20px rgba(26,54,93,.30); }
+.strip { max-width: 1000px; margin: 22px auto 0; padding: 0 24px; }
+.strip-inner { background: var(--off); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px 26px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.strip-inner .t { font-weight: 700; font-size: 16px; }
+.strip-inner .s { color: var(--muted); font-size: 14px; }
+.contact { text-align: center; color: var(--muted); font-size: 14px; margin: 26px auto 0; max-width: 1000px; padding: 0 24px; }
+.contact a { color: var(--purple); font-weight: 600; }
+.scope { max-width: 760px; margin: 26px auto 0; padding: 16px 20px; font-size: 13.5px; color: var(--muted); background: var(--off); border: 1px solid var(--line); border-radius: 12px; text-align: center; }
+.scope b { color: var(--navy); }
+footer.site { border-top: 1px solid var(--line); margin-top: 56px; }
+.foot-inner { max-width: 1080px; margin: 0 auto; padding: 28px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; color: var(--muted); font-size: 14px; }
+.foot-links { display: flex; gap: 20px; flex-wrap: wrap; }
+.foot-links a { color: var(--muted); transition: color var(--ease); }
+.foot-links a:hover { color: var(--purple); }
+.btn:focus-visible { outline: 3px solid rgba(108,71,255,.4); outline-offset: 2px; }
+@media (max-width: 640px) { .nav-links { display: none; } .page-head h1 { font-size: 32px; } }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="/">
+      <svg width="30" height="30" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><polygon points="64,12 109,38 109,90 64,116 19,90 19,38" fill="#6c47ff"/><path d="M44 64 L58 78 L86 44" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Sentra
+    </a>
+    <div class="nav-right">
+      <div class="nav-links">
+        <a href="index.html">MailFrame</a>
+        <a href="#plans">Pricing</a>
+        <a href="mailto:hello@mailframe.org?subject=Sentra">Contact</a>
+      </div>
+      <a class="btn btn-primary btn-sm" href="#plans">Get credits</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="eyebrow">Sentra · prepaid credits</div>
+  <h1>A checkpoint your high-value<br>actions pass before they happen.</h1>
+  <p>Sentra verifies an action — allow, contain, or block — and runs untrusted steps in a sealed sandbox. Buy a pack of credits, spend as you go. No subscription.</p>
+  <div class="chips">
+    <div class="chip"><b>1 credit</b> = 1 risk check</div>
+    <div class="chip"><b>5 credits</b> = 1 sandboxed run</div>
+    <div class="chip">Credits valid <b>12 months</b></div>
+  </div>
+</header>
+
+<div class="grid" id="plans">
+  <div class="card">
+    <div class="plan">Starter</div>
+    <div class="price">$49</div>
+    <div class="credits">1,000 credits</div>
+    <div class="rate">≈ $0.049 / credit</div>
+    <ul class="feats">
+      <li>Verify actions — allow, contain, or block</li>
+      <li>Sandboxed runs for untrusted payloads</li>
+      <li>One API key, usage dashboard</li>
+      <li>Email support</li>
+    </ul>
+    <a class="btn btn-tier btn-outline" href="https://buy.stripe.com/test_bJe6oH18AeJh4n79yqb3q00">Buy Starter →</a>
+  </div>
+
+  <div class="card featured">
+    <div class="plan featured">Growth <span class="rec">Recommended</span></div>
+    <div class="price">$199</div>
+    <div class="credits">5,000 credits</div>
+    <div class="rate">≈ $0.040 / credit · ~19% more per euro</div>
+    <ul class="feats">
+      <li>Everything in Starter</li>
+      <li>Better rate per credit</li>
+      <li>Higher rate limits</li>
+      <li>Priority email support</li>
+    </ul>
+    <a class="btn btn-tier btn-filled" href="https://buy.stripe.com/test_cNiaEXg3u1WvdXH4e6b3q02">Buy Growth →</a>
+  </div>
+
+  <div class="card">
+    <div class="plan">Scale</div>
+    <div class="price">$499</div>
+    <div class="credits">15,000 credits</div>
+    <div class="rate">≈ $0.033 / credit · best rate</div>
+    <ul class="feats">
+      <li>Everything in Growth</li>
+      <li>Best rate per credit</li>
+      <li>Onboarding call</li>
+      <li>Compliance report exports</li>
+    </ul>
+    <a class="btn btn-tier btn-navy" href="https://buy.stripe.com/test_9B67sLdVmbx506RaCub3q01">Buy Scale →</a>
+  </div>
+</div>
+
+<div class="strip">
+  <div class="strip-inner">
+    <div>
+      <div class="t">Need higher volume, a committed plan, or compliance support?</div>
+      <div class="s">Custom credit pricing, audit exports, and an SLA for regulated environments.</div>
+    </div>
+    <a class="btn btn-outline btn-sm" href="mailto:hello@mailframe.org?subject=Sentra%20Enterprise">Contact us</a>
+  </div>
+</div>
+
+<p class="contact">Add-on: <strong style="color:var(--navy)">Compliance report export — $5 each.</strong> Add it anytime from your dashboard.</p>
+
+<div class="scope"><b>Honest scope.</b> Sentra sits <b>alongside</b> your existing security — it verifies and contains high-value actions and runs untrusted code in isolation. It is not a firewall or WAF and does not replace one.</div>
+
+<footer class="site">
+  <div class="foot-inner">
+    <a class="brand" href="/" style="font-weight:500;color:var(--muted)">
+      <svg width="22" height="22" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><polygon points="64,12 109,38 109,90 64,116 19,90 19,38" fill="#2b6cb0"/><path d="M44 64 L58 78 L86 44" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      © MailFrame
+    </a>
+    <div class="foot-links">
+      <a href="pricing.html">MailFrame Pricing</a>
+      <a href="sentra.html">Sentra</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="mailto:support@mailframe.org">support@mailframe.org</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
