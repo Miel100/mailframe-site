@@ -95,7 +95,7 @@ footer.site { border-top: 1px solid var(--line); margin-top: 56px; }
       <div class="nav-links">
         <a href="index.html">MailFrame</a>
         <a href="#plans">Pricing</a>
-        <a href="mailto:hello@mailframe.org?subject=Sentra">Contact</a>
+        <a href="mailto:support@mailframe.org?subject=Sentra">Contact</a>
       </div>
       <a class="btn btn-primary btn-sm" href="#plans">Get credits</a>
     </div>
@@ -112,6 +112,29 @@ footer.site { border-top: 1px solid var(--line); margin-top: 56px; }
     <div class="chip">Credits valid <b>12 months</b></div>
   </div>
 </header>
+
+<section class="how-it-works">
+  <div class="hiw-inner">
+    <h2>How it works</h2>
+    <div class="hiw-steps">
+      <div class="hiw-step">
+        <span class="hiw-num">1</span>
+        <h3>Ask before you act</h3>
+        <p>Before your app or AI agent does something consequential — a payment, a database write, a privileged change — it calls Sentra and asks whether it should proceed. One API call, before the action.</p>
+      </div>
+      <div class="hiw-step">
+        <span class="hiw-num">2</span>
+        <h3>Verify, then contain</h3>
+        <p>A valid, cryptographically signed authorization passes straight through to your real system. Anything without one is <strong>contained</strong> — the action &ldquo;succeeds&rdquo; into a realistic decoy while your real data is never touched, and a planted honeytoken burns the source if it ever reuses what it stole.</p>
+      </div>
+      <div class="hiw-step">
+        <span class="hiw-num">3</span>
+        <h3>Detonate untrusted code safely</h3>
+        <p>Need to run something you don&rsquo;t trust — an attacker&rsquo;s payload, code an AI generated? Sentra runs it in a sealed sandbox with <strong>no network access</strong>, then hands you back exactly what it did. It can&rsquo;t reach production, and it&rsquo;s destroyed afterwards.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <div class="grid" id="plans">
   <div class="card">
@@ -163,7 +186,7 @@ footer.site { border-top: 1px solid var(--line); margin-top: 56px; }
       <div class="t">Need higher volume, a committed plan, or compliance support?</div>
       <div class="s">Custom credit pricing, audit exports, and an SLA for regulated environments.</div>
     </div>
-    <a class="btn btn-outline btn-sm" href="mailto:hello@mailframe.org?subject=Sentra%20Enterprise">Contact us</a>
+    <a class="btn btn-outline btn-sm" href="mailto:support@mailframe.org?subject=Sentra%20Enterprise">Contact us</a>
   </div>
 </div>
 
