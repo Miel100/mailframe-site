@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MailFrame Sovereign — Private life intelligence</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta name="description" content="MailFrame Sovereign is a private desktop intelligence layer for your inbox and calendar. It reads the week, tracks what you promised, protects the space between — and keeps every bit of it on your own machine. Invitation only, €129/month.">
+  <link rel="canonical" href="https://mailframe.org/sovereign">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="MailFrame">
+  <meta property="og:title" content="MailFrame Sovereign — Your inbox, finally thinking with you">
+  <meta property="og:description" content="A private desktop intelligence layer for inbox and calendar. Local-first by architecture: your mail never leaves your machine. Invitation only, €129/month.">
+  <meta property="og:url" content="https://mailframe.org/sovereign">
+  <meta property="og:image" content="https://mailframe.org/og-sovereign.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MailFrame Sovereign — Your inbox, finally thinking with you">
+  <meta name="twitter:description" content="A private desktop intelligence layer for inbox and calendar. Local-first by architecture. Invitation only, €129/month.">
+  <meta name="twitter:image" content="https://mailframe.org/og-sovereign.png">
+  <meta name="theme-color" content="#0A0A0A">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --gold: #C9A84C; --gold-d: #A8892F; --gold-soft: rgba(201,168,76,.12); --gold-line: rgba(201,168,76,.28);
+      --bg: #0A0A0A; --bg-1: #101010; --bg-2: #151515;
+      --ink: #F4F1EA; --muted: #9A968D; --faint: #6C6961;
+      --line: rgba(255,255,255,.09); --line-2: rgba(255,255,255,.06);
+      --radius: 16px;
+      --shadow-lg: 0 24px 70px rgba(0,0,0,.55);
+      --ease: .18s cubic-bezier(.4,0,.2,1);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg); color: var(--ink); line-height: 1.6;
+      -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+    a { color: var(--gold); text-decoration: none; }
+    ::selection { background: var(--gold); color: #0A0A0A; }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+    :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 6px; }
+
+    /* ── Nav (site nav, tuned to the Sovereign palette) ── */
+    .nav {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: saturate(180%) blur(12px);
+      background: rgba(10,10,10,.78);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; max-width: 1080px; margin: 0 auto; padding: 14px 24px; gap: 14px; }
+    .brand { display: flex; align-items: center; gap: 9px; font-weight: 600; font-size: 16px; letter-spacing: -0.3px; color: var(--ink); }
+    .brand .sv { color: var(--gold); font-weight: 500; }
+    .nav-right { display: flex; align-items: center; gap: 24px; }
+    .nav-links { display: flex; gap: 22px; font-size: 14px; font-weight: 500; }
+    .nav-links a { color: var(--muted); transition: color var(--ease); }
+    .nav-links a:hover, .nav-links a[aria-current="page"] { color: var(--ink); }
+
+    /* ── Buttons ── */
+    .btn { padding: 11px 20px; border-radius: 10px; font-size: 14.5px; font-weight: 600; font-family: inherit; border: 1.5px solid transparent; cursor: pointer; transition: background var(--ease), transform var(--ease), box-shadow var(--ease), border-color var(--ease), color var(--ease); display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+    .btn-primary { background: var(--gold); color: #0A0A0A; border-color: var(--gold); }
+    .btn-primary:hover { background: #D8B85C; transform: translateY(-1px); box-shadow: 0 10px 26px rgba(201,168,76,.22); }
+    .btn-ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+    .btn-ghost:hover { border-color: var(--gold-line); color: var(--gold); transform: translateY(-1px); }
+    .btn-sm { padding: 8px 16px; font-size: 14px; border-radius: 9px; }
+
+    /* ── Hero ── */
+    .hero { position: relative; overflow: hidden; border-bottom: 1px solid var(--line-2); }
+    .hero::before {
+      content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+      background:
+        radial-gradient(60% 55% at 78% 0%, rgba(201,168,76,.13) 0%, transparent 62%),
+        radial-gradient(70% 60% at 10% 8%, rgba(201,168,76,.06) 0%, transparent 58%);
+    }
+    .hero-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1.05fr .95fr; gap: 56px; align-items: center; padding: 84px 0 76px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 7px; font-size: 12.5px; font-weight: 600; color: var(--gold); background: var(--gold-soft); border: 1px solid var(--gold-line); border-radius: 999px; padding: 5px 12px; margin-bottom: 22px; }
+    .eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+    h1 { font-size: clamp(32px, 7.2vw, 52px); line-height: 1.05; font-weight: 800; letter-spacing: -1.6px; margin-bottom: 18px; }
+    h1 .gold { color: var(--gold); }
+    .lede { color: var(--muted); font-size: clamp(16px, 4vw, 18.5px); line-height: 1.55; max-width: 520px; margin-bottom: 30px; }
+    .cta { display: flex; gap: 12px; flex-wrap: wrap; }
+    .hero-note { color: var(--faint); font-size: 13.5px; margin-top: 26px; letter-spacing: .1px; }
+
+    /* ── Hero product mockup ── */
+    .mock-wrap { position: relative; display: flex; justify-content: center; min-width: 0; }
+    .mock-glow { position: absolute; inset: -12% -8% -16% -8%; background: radial-gradient(closest-side, rgba(201,168,76,.16), transparent 72%); }
+    .panel { position: relative; width: 100%; max-width: 380px; background: var(--bg-1); border: 1px solid var(--line); border-radius: 18px; box-shadow: var(--shadow-lg); overflow: hidden; }
+    .panel-head { display: flex; align-items: center; gap: 9px; padding: 13px 16px; border-bottom: 1px solid var(--line-2); background: var(--bg-2); }
+    .panel-head .pname { font-weight: 600; font-size: 13.5px; letter-spacing: -.2px; }
+    .panel-head .chip { margin-left: auto; font-size: 10px; font-weight: 700; color: var(--gold); background: var(--gold-soft); border: 1px solid var(--gold-line); border-radius: 999px; padding: 2px 9px; }
+    .panel-body { padding: 18px 16px; }
+    .pday { font-size: 11px; letter-spacing: .6px; text-transform: uppercase; color: var(--faint); font-weight: 700; margin-bottom: 6px; }
+    .pline { font-size: 14.5px; font-weight: 600; line-height: 1.45; letter-spacing: -.2px; margin-bottom: 16px; }
+    .psec { margin-bottom: 15px; }
+    .psec .lab { font-size: 10.5px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+    .psec ul { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+    .psec li { position: relative; padding-left: 15px; font-size: 12.8px; color: #C9C4B9; line-height: 1.45; }
+    .psec li::before { content: ''; position: absolute; left: 0; top: 7px; width: 5px; height: 5px; border-radius: 50%; background: var(--gold); opacity: .55; }
+    .pma { display: flex; align-items: center; gap: 9px; font-size: 12px; color: var(--muted); background: rgba(201,168,76,.05); border: 1px dashed var(--gold-line); border-radius: 10px; padding: 9px 11px; margin-bottom: 15px; }
+    .pscore { display: flex; align-items: center; gap: 12px; padding-top: 14px; border-top: 1px solid var(--line-2); }
+    .pscore .num { font-size: 25px; font-weight: 800; color: var(--gold); letter-spacing: -1px; line-height: 1; }
+    .pscore .meta { font-size: 11px; color: var(--faint); line-height: 1.35; }
+    .pbar { height: 4px; border-radius: 99px; background: rgba(255,255,255,.08); margin-top: 6px; overflow: hidden; }
+    .pbar i { display: block; height: 100%; width: 82%; background: var(--gold); border-radius: 99px; }
+
+    /* ── Section furniture ── */
+    section { padding: 76px 0; }
+    section + section { border-top: 1px solid var(--line-2); }
+    .sec-head { max-width: 660px; margin: 0 auto 44px; text-align: center; }
+    .sec-eyebrow { font-size: 12.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--gold); margin-bottom: 12px; }
+    .sec-head h2 { font-size: clamp(25px, 5.4vw, 34px); font-weight: 800; letter-spacing: -1px; line-height: 1.15; }
+    .sec-head p { color: var(--muted); font-size: 17px; margin-top: 14px; }
+
+    /* ── Problem (prose) ── */
+    .prose { max-width: 640px; margin: 0 auto; }
+    .prose p { color: #BDB8AE; font-size: clamp(16px, 4vw, 17.5px); line-height: 1.72; margin-bottom: 22px; }
+    .prose p:last-child { margin-bottom: 0; }
+    .prose strong { color: var(--ink); font-weight: 600; }
+
+    /* ── Cards ── */
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+    .card { background: var(--bg-1); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px 24px; transition: transform var(--ease), border-color var(--ease), background var(--ease); }
+    .card:hover { transform: translateY(-4px); border-color: var(--gold-line); background: var(--bg-2); }
+    .ico { width: 42px; height: 42px; border-radius: 11px; background: var(--gold-soft); border: 1px solid var(--gold-line); color: var(--gold); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+    .ico svg { width: 21px; height: 21px; }
+    .card h3 { font-size: 16px; font-weight: 700; letter-spacing: -.3px; margin-bottom: 7px; }
+    .card p { color: var(--muted); font-size: 14.5px; line-height: 1.55; }
+
+    /* ── Privacy ── */
+    .privacy { background: var(--bg-1); }
+    .privacy .sec-head h2 { max-width: 620px; margin: 0 auto; }
+    .plist { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px 34px; max-width: 900px; margin: 0 auto; }
+    .pitem { display: flex; gap: 14px; padding: 16px 0; border-bottom: 1px solid var(--line-2); }
+    .pitem .tick { flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; border: 1px solid var(--gold-line); background: var(--gold-soft); color: var(--gold); display: flex; align-items: center; justify-content: center; margin-top: 2px; }
+    .pitem .tick svg { width: 12px; height: 12px; }
+    .pitem h3 { font-size: 15px; font-weight: 700; letter-spacing: -.2px; margin-bottom: 4px; }
+    .pitem p { color: var(--muted); font-size: 14px; line-height: 1.55; }
+    .caveat { max-width: 760px; margin: 40px auto 0; background: rgba(201,168,76,.05); border: 1px solid var(--gold-line); border-left: 3px solid var(--gold); border-radius: 12px; padding: 24px 26px; }
+    .caveat h3 { font-size: 15px; font-weight: 700; color: var(--gold); letter-spacing: -.2px; margin-bottom: 9px; }
+    .caveat p { color: #BDB8AE; font-size: 14.5px; line-height: 1.65; margin-bottom: 12px; }
+    .caveat p:last-child { margin-bottom: 0; }
+
+    /* ── Ma ── */
+    .ma { text-align: center; }
+    .ma .kanji { font-size: clamp(56px, 14vw, 84px); line-height: 1; color: var(--gold); opacity: .9; margin-bottom: 22px; font-weight: 400; }
+    .ma .prose { text-align: left; }
+    .ma-quote { max-width: 620px; margin: 34px auto 0; font-size: clamp(17px, 4.4vw, 20px); line-height: 1.5; color: var(--ink); font-weight: 500; letter-spacing: -.3px; border-top: 1px solid var(--line); padding-top: 30px; }
+
+    /* ── Pricing ── */
+    .price-wrap { max-width: 720px; margin: 0 auto; }
+    .price-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .price { background: var(--bg-1); border: 1px solid var(--line); border-radius: var(--radius); padding: 30px 26px; text-align: center; position: relative; }
+    .price.feat { border-color: var(--gold-line); background: linear-gradient(180deg, rgba(201,168,76,.07), transparent 60%), var(--bg-1); }
+    .price .plan { font-size: 12.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .9px; color: var(--muted); margin-bottom: 14px; }
+    .price .amt { font-size: clamp(32px, 8vw, 40px); font-weight: 800; letter-spacing: -1.6px; line-height: 1; }
+    .price .per { color: var(--faint); font-size: 14px; font-weight: 500; }
+    .price .sub { color: var(--muted); font-size: 14px; margin-top: 12px; min-height: 42px; }
+    .price .tag { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: .4px; text-transform: uppercase; color: var(--gold); background: var(--gold-soft); border: 1px solid var(--gold-line); border-radius: 999px; padding: 3px 10px; margin-bottom: 14px; }
+    .price-note { text-align: center; color: var(--muted); font-size: 14.5px; line-height: 1.65; margin-top: 28px; }
+
+    /* ── Waitlist ── */
+    .waitlist { background: var(--bg-1); }
+    form { max-width: 520px; margin: 0 auto; }
+    .field { margin-bottom: 18px; }
+    label { display: block; font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 7px; letter-spacing: -.1px; }
+    input, select, textarea {
+      width: 100%; font-family: inherit; font-size: 15px; color: var(--ink);
+      background: var(--bg); border: 1px solid var(--line); border-radius: 10px;
+      padding: 12px 14px; transition: border-color var(--ease), background var(--ease);
+      -webkit-appearance: none; appearance: none;
+    }
+    textarea { resize: vertical; min-height: 92px; line-height: 1.5; }
+    input::placeholder, textarea::placeholder { color: var(--faint); }
+    input:focus, select:focus, textarea:focus { outline: none; border-color: var(--gold); background: var(--bg-2); }
+    select { background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239A968D' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; background-size: 17px; padding-right: 40px; }
+    select option { background: var(--bg-1); color: var(--ink); }
+    form .btn-primary { width: 100%; padding: 13px 20px; font-size: 15px; }
+    .form-note { color: var(--faint); font-size: 13px; text-align: center; margin-top: 14px; line-height: 1.55; }
+
+    /* ── Footer (site footer, tuned to the Sovereign palette) ── */
+    footer { border-top: 1px solid var(--line); }
+    .foot-inner { max-width: 1080px; margin: 0 auto; padding: 28px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; color: var(--muted); font-size: 14px; }
+    .foot-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    .foot-links a { color: var(--muted); transition: color var(--ease); }
+    .foot-links a:hover { color: var(--gold); }
+
+    @media (max-width: 860px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 44px; padding: 56px 0 60px; text-align: center; }
+      .lede { margin-left: auto; margin-right: auto; }
+      .cta { justify-content: center; }
+      .nav-links { display: none; }
+      .mock-wrap { order: 2; }
+      section { padding: 60px 0; }
+    }
+    @media (max-width: 560px) {
+      .price-grid { grid-template-columns: 1fr; }
+      .foot-inner { justify-content: center; text-align: center; }
+    }
+    @media (max-width: 380px) {
+      .wrap { padding: 0 16px; }
+      .nav-inner, .foot-inner { padding-left: 16px; padding-right: 16px; }
+      .card, .price { padding: 22px 18px; }
+      .caveat { padding: 20px 18px; }
+      .cta { flex-direction: column; align-items: stretch; }
+      .btn { width: 100%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: .001ms !important; animation-iteration-count: 1 !important;
+        transition-duration: .001ms !important; scroll-behavior: auto !important;
+      }
+      .card:hover, .btn:hover { transform: none; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "MailFrame Sovereign",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "macOS",
+    "url": "https://mailframe.org/sovereign",
+    "description": "MailFrame Sovereign is a private, local-first desktop intelligence layer for inbox and calendar. It briefs the day, tracks commitments, protects deep and rest time, and keeps all personal data on the user's own machine.",
+    "offers": [
+      { "@type": "Offer", "name": "Monthly", "price": "129", "priceCurrency": "EUR" },
+      { "@type": "Offer", "name": "Annual", "price": "1290", "priceCurrency": "EUR" }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="/">
+        <svg width="30" height="30" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><polygon points="64,12 109,38 109,90 64,116 19,90 19,38" fill="#C9A84C"/><path d="M44 64 L58 78 L86 44" fill="none" stroke="#0A0A0A" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        MailFrame <span class="sv">Sovereign</span>
+      </a>
+      <div class="nav-right">
+        <div class="nav-links">
+          <a href="sovereign.html" aria-current="page">Sovereign</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="faq.html">FAQ</a>
+        </div>
+        <a class="btn btn-primary btn-sm" href="#waitlist">Request access</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-inner wrap">
+      <div class="hero-copy">
+        <span class="eyebrow"><span class="dot"></span> Private life intelligence</span>
+        <h1>Your inbox, finally <span class="gold">thinking with you</span></h1>
+        <p class="lede">A desktop intelligence layer that reads your week, remembers what you promised, and protects the hours that make the work possible — entirely on your own machine.</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="#waitlist">Request access</a>
+          <a class="btn btn-ghost" href="#intelligence">See how it works</a>
+        </div>
+        <p class="hero-note">Invitation only · €129/month · macOS available, Windows coming</p>
+      </div>
+
+      <div class="mock-wrap">
+        <div class="mock-glow" aria-hidden="true"></div>
+        <div class="panel" role="img" aria-label="Preview of the Sovereign morning brief: what needs you today, commitments you have made, a protected deep-work block, and this week's Sovereign Score.">
+          <div class="panel-head">
+            <svg width="20" height="20" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><polygon points="64,12 109,38 109,90 64,116 19,90 19,38" fill="#C9A84C"/><path d="M44 64 L58 78 L86 44" fill="none" stroke="#0A0A0A" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="pname">Morning Brief</span>
+            <span class="chip">Thursday</span>
+          </div>
+          <div class="panel-body">
+            <div class="pday">Define · Measure · <b style="color:var(--gold)">Analyse</b> · Improve · Control</div>
+            <div class="pline">Three things need you before noon. The rest can wait until Friday.</div>
+
+            <div class="psec">
+              <div class="lab">Needs you</div>
+              <ul>
+                <li>Hartmann counter-signature — you said Thursday, it is Thursday.</li>
+                <li>Q3 supplier terms: they moved on price, waiting on your call.</li>
+                <li>Legal review thread has gone quiet for 9 days.</li>
+              </ul>
+            </div>
+
+            <div class="psec">
+              <div class="lab">You promised</div>
+              <ul>
+                <li>“I’ll send the revised deck by end of week” — Monday, to Ines.</li>
+              </ul>
+            </div>
+
+            <div class="pma">
+              <span aria-hidden="true" style="color:var(--gold);font-size:15px;line-height:1">間</span>
+              <span>14:00–16:30 held for deep work. Nothing scheduled into it.</span>
+            </div>
+
+            <div class="pscore">
+              <div class="num">82</div>
+              <div style="flex:1;min-width:0">
+                <div class="meta">Sovereign Score · this week</div>
+                <div class="pbar" aria-hidden="true"><i></i></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="problem">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-eyebrow">The problem</div>
+        <h2>Every tool organises your mail. None of them think about it.</h2>
+      </div>
+      <div class="prose">
+        <p>Filters, labels, snoozes, priority inboxes, AI that writes replies faster — the entire category is built around moving messages out of sight more efficiently. It works, in the narrow sense. The inbox gets emptier. But nothing in that stack has ever asked the question you actually carry around all day: <strong>what does all of this mean, and what does it mean for this week?</strong></p>
+        <p>So the real work stays with you. You are the one holding the fact that you promised someone a document on Monday, that a negotiation has gone quiet for nine days in a way that should worry you, that the thing due Friday needs four uninterrupted hours you have not scheduled and will not get if the week continues as it is. That knowledge lives in your head, degrades under load, and surfaces at 2am rather than at the moment it would have been useful.</p>
+        <p>Sovereign is built for that layer instead. It reads the same inbox and the same calendar as everything else, and then does the part nobody has automated: it works out what is actually happening across your commitments, your relationships and your time — and tells you, once, each morning, in plain language.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="intelligence">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-eyebrow">Intelligence</div>
+        <h2>Six things it works out for you</h2>
+        <p>Not features you operate. Conclusions you are handed.</p>
+      </div>
+      <div class="grid">
+
+        <div class="card">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.2 5.2l1.4 1.4M17.4 17.4l1.4 1.4M18.8 5.2l-1.4 1.4M6.6 17.4l-1.4 1.4"/></svg></div>
+          <h3>Morning Brief</h3>
+          <p>One short read at the start of the day: what genuinely needs you, what can wait, and what changed overnight.</p>
+        </div>
+
+        <div class="card">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 8.6c0 5-8.5 10.4-8.5 10.4S3.5 13.6 3.5 8.6a4.4 4.4 0 0 1 8.5-1.6 4.4 4.4 0 0 1 8.5 1.6z"/></svg></div>
+          <h3>Relationship health</h3>
+          <p>Which of your important correspondents are drifting — slower replies, longer silences, a thread that quietly stopped.</p>
+        </div>
+
+        <div class="card">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11.5l2.2 2.2L15.5 9"/><path d="M6.5 3.5h11a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2h-11a2 2 0 0 1-2-2v-13a2 2 0 0 1 2-2z"/></svg></div>
+          <h3>Commitment tracker</h3>
+          <p>Every promise you made in writing, pulled out of your sent mail and held until you have actually kept it.</p>
+        </div>
+
+        <div class="card">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 15.5a9.5 9.5 0 0 1 19 0"/><path d="M12 15.5l4.5-5"/><circle cx="12" cy="15.5" r="1.3"/><path d="M2.5 19.5h19"/></svg></div>
+          <h3>Horizon calendar</h3>
+          <p>Your week as pressure rather than boxes — where the load actually falls, and where there is still room to put things.</p>
+        </div>
+
+        <div class="card">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.6 5.6 6.1.8-4.5 4.2 1.2 6.1L12 16.8 6.6 19.7l1.2-6.1L3.3 9.4l6.1-.8L12 3z"/></svg></div>
+          <h3>Sovereign Score</h3>
+          <p>A weekly measure of how the week was actually lived — deep work, kept deadlines, protected time — computed from behaviour, never self-reported.</p>
+        </div>
+
+        <div class="card">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="7" r="2.4"/><circle cx="18" cy="7" r="2.4"/><circle cx="12" cy="17.5" r="2.4"/><path d="M7.6 8.8l3 6.6M16.4 8.8l-3 6.6M8.4 7h7.2"/></svg></div>
+          <h3>Situation synthesis</h3>
+          <p>A long, tangled negotiation compressed into where it stands, what was decided, and what is still open.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="privacy" id="privacy">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-eyebrow">Privacy</div>
+        <h2>Built so we couldn't read your data even if we wanted to</h2>
+        <p>Not a policy promise layered over a cloud. A property of where the data sits.</p>
+      </div>
+
+      <div class="plist">
+
+        <div class="pitem">
+          <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span>
+          <div>
+            <h3>Everything lives on your machine</h3>
+            <p>Your mail, your calendar, your commitments, your scores — all of it is stored locally on your own computer. There is no copy of your inbox on our servers, because there are no servers holding user content at all.</p>
+          </div>
+        </div>
+
+        <div class="pitem">
+          <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span>
+          <div>
+            <h3>Your credentials never leave the device</h3>
+            <p>The keys to your mailbox are held in your operating system's own secure credential store and are never transmitted to us, never written into a file you could accidentally share, and never visible to anyone but you.</p>
+          </div>
+        </div>
+
+        <div class="pitem">
+          <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span>
+          <div>
+            <h3>It cannot destroy anything</h3>
+            <p>Sovereign reads your mail, and — only when you tell it to — archives a thread or sends a reply you have approved. It has no ability to delete a message or empty a mailbox, and it never asks for the permission that would let it.</p>
+          </div>
+        </div>
+
+        <div class="pitem">
+          <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span>
+          <div>
+            <h3>Nothing reports back</h3>
+            <p>There is no usage analytics, no behavioural telemetry, no quiet stream of what you opened and when. Nobody — not us, not an employer, not an administrator — gets a dashboard of how you spend your day.</p>
+          </div>
+        </div>
+
+        <div class="pitem">
+          <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span>
+          <div>
+            <h3>No advertising. Ever.</h3>
+            <p>Your data will not be sold, brokered, or used to train anyone's models, and there will never be an advertising surface in this product. You pay for the software, so the software has no reason to want anything else from you.</p>
+          </div>
+        </div>
+
+        <div class="pitem">
+          <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span>
+          <div>
+            <h3>Delete the app and it is all gone</h3>
+            <p>Erasure is a single gesture on your own computer, not a support ticket and a 30-day wait. When the app is gone, the data is gone, with nothing left behind on our side to request, verify, or take on trust.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="caveat">
+        <h3>The one thing that does leave — stated plainly</h3>
+        <p>Sovereign uses AI for a handful of things: the morning brief, situation synthesis, drafting. When you ask for one of those, the request it sends contains text drawn from your mail, and that request travels off your machine to reach an AI model. We route it through a privacy relay that strips identifying details on the way, and it is never stored — but we are not going to pretend it never happens.</p>
+        <p>So the honest version is this: <strong>local-first does not mean nothing ever leaves.</strong> It means your data is never stored anywhere but your own machine, nothing leaves without you asking for it, and most of what Sovereign does — the relationship signals, the ranking, the silence detection, the scoring — is worked out on your device and never leaves at all.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="ma">
+    <div class="wrap">
+      <div class="kanji" aria-hidden="true">間</div>
+      <div class="sec-head" style="margin-bottom:34px">
+        <div class="sec-eyebrow">The Ma principle</div>
+        <h2>The space between is the architecture, not the leftovers</h2>
+      </div>
+      <div class="prose">
+        <p><em style="color:var(--muted);font-style:normal">Ma</em> is the Japanese idea of intentional negative space — the charged interval that gives the surrounding form its shape. Sovereign treats your unscheduled time exactly that way: not as a gap waiting to be filled, but as the thing that makes the rest of the work possible.</p>
+        <p>In practice this means the system defends time you would give away. A deadline that lands on a Saturday does not get scheduled onto your weekend; it gets routed back into the week, with quick work pulled to Friday and demanding work placed where you will still have the capacity for it. Rest is not a setting you enable — <strong>it is a boundary the system holds even when you would not.</strong></p>
+        <p>And because it is structural rather than cosmetic, it is measured. Sovereign tracks whether your protected time actually stayed protected, and only credits you when there was real pressure to protect it against. An empty week does not score as a well-defended one.</p>
+      </div>
+      <p class="ma-quote">What you deliberately leave out — of the weekend, of the cloud — is the architecture, not the absence of it.</p>
+    </div>
+  </section>
+
+  <section class="profession">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-eyebrow">Built for your work</div>
+        <h2>It reads your inbox the way your profession does</h2>
+        <p>Same intelligence, tuned to what actually matters in your field.</p>
+      </div>
+      <div class="grid">
+
+        <div class="card">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 17.5l5-5.5 4 3.5 8-9"/><path d="M15.5 6.5h5v5"/></svg></div>
+          <h3>Finance</h3>
+          <p>Deal terms, amounts and counterparties surfaced first — plus which live processes have gone quiet on the other side.</p>
+        </div>
+
+        <div class="card">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16M6 8h12"/><path d="M4 20h16"/><path d="M6 8l-2.5 5.5h5L6 8zM18 8l-2.5 5.5h5L18 8z"/></svg></div>
+          <h3>Law</h3>
+          <p>Deadlines, obligations and undertakings extracted as they appear, with the clock on each one visible before it runs out.</p>
+        </div>
+
+        <div class="card">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7.5" r="3.2"/><path d="M4.5 20c0-3.6 3.4-6 7.5-6s7.5 2.4 7.5 6"/></svg></div>
+          <h3>Executive</h3>
+          <p>Decisions waiting on you, commitments made in your name, and where your week is over-committed before it starts.</p>
+        </div>
+
+        <div class="card">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5h11a1.5 1.5 0 0 1 1.5 1.5v11a1.5 1.5 0 0 0 1.5 1.5H5.5A1.5 1.5 0 0 1 4 18V5.5z"/><path d="M16.5 9.5H19a1 1 0 0 1 1 1V18a1.5 1.5 0 0 1-1.5 1.5"/><path d="M7 9h5M7 12.5h5M7 16h3"/></svg></div>
+          <h3>Journalism</h3>
+          <p>Sources, embargoes and pending confirmations tracked together — including who you promised what, and when.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="pricing">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-eyebrow">Pricing</div>
+        <h2>One tier. No trial that expires into a worse product.</h2>
+      </div>
+      <div class="price-wrap">
+        <div class="price-grid">
+          <div class="price">
+            <div class="plan">Monthly</div>
+            <div class="amt">€129<span class="per">/month</span></div>
+            <p class="sub">Everything in Sovereign, billed monthly. Cancel whenever it stops earning its place.</p>
+          </div>
+          <div class="price feat">
+            <span class="tag">Two months free</span>
+            <div class="plan">Annual</div>
+            <div class="amt">€1,290<span class="per">/year</span></div>
+            <p class="sub">The same thing, paid yearly — twelve months for the price of ten.</p>
+          </div>
+        </div>
+        <p class="price-note">
+          Access is by invitation. We onboard in small groups so that every account gets set up properly, and so the product stays shaped by people who actually use it this way.
+          <br><a href="#waitlist">Request an invitation →</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="waitlist" id="waitlist">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-eyebrow">Request access</div>
+        <h2>Tell us about your inbox</h2>
+        <p>We read every one of these. The last question matters most.</p>
+      </div>
+
+      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required autocomplete="email" placeholder="you@company.com">
+        </div>
+
+        <div class="field">
+          <label for="profession">Profession</label>
+          <select id="profession" name="profession" required>
+            <option value="" selected disabled>Select your field</option>
+            <option value="finance">Finance</option>
+            <option value="law">Law</option>
+            <option value="executive">Executive / founder</option>
+            <option value="journalism">Journalism</option>
+            <option value="other">Something else</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="pain">In one sentence, what's hard about your inbox?</label>
+          <textarea id="pain" name="pain" required placeholder="The thing you'd fix first, if you could."></textarea>
+        </div>
+
+        <input type="hidden" name="_subject" value="Sovereign — access request">
+        <button type="submit" class="btn btn-primary">Request access</button>
+        <p class="form-note">Invitation only · €129/month · macOS available, Windows coming</p>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="foot-inner">
+      <a class="brand" href="/" style="font-weight:500;color:var(--muted)">
+        <svg width="20" height="20" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><polygon points="64,12 109,38 109,90 64,116 19,90 19,38" fill="#C9A84C"/><path d="M44 64 L58 78 L86 44" fill="none" stroke="#0A0A0A" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        © MailFrame
+      </a>
+      <div class="foot-links">
+        <a href="sovereign.html">Sovereign</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="faq.html">FAQ</a>
+        <a href="mailto:support@mailframe.org">support@mailframe.org</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

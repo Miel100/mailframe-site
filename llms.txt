@@ -5,6 +5,7 @@
 ## Pages
 
 - [Home](https://mailframe.org/): Product overview and features
+- [Sovereign](https://mailframe.org/sovereign): MailFrame Sovereign — a private, local-first desktop intelligence layer for inbox and calendar. Morning brief, commitment tracking, relationship health, protected deep-work time. Invitation only, €129/month.
 - [Pricing](https://mailframe.org/pricing.html): Free, Pro ($12/mo), and Business ($79/mo) plans
 - [FAQ](https://mailframe.org/faq.html): Install, activation, privacy, supported languages, plans, and troubleshooting
 - [Privacy Policy](https://mailframe.org/privacy.html): How your data is handled
