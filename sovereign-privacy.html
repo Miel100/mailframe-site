@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sovereign — Privacy Policy</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta name="description" content="Privacy Policy for MailFrame Sovereign, the local-first desktop intelligence layer by ProofChain LLC.">
+  <link rel="canonical" href="https://mailframe.org/sovereign-privacy">
+  <meta name="robots" content="noindex, follow">
+  <meta name="theme-color" content="#0A0A0A">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --gold: #C9A84C; --gold-d: #A8892F; --gold-soft: rgba(201,168,76,.12); --gold-line: rgba(201,168,76,.28);
+      --bg: #0A0A0A; --bg-1: #101010; --bg-2: #151515;
+      --ink: #F4F1EA; --muted: #9A968D; --faint: #6C6961;
+      --line: rgba(255,255,255,.09); --line-2: rgba(255,255,255,.06);
+      --radius: 16px; --ease: .18s cubic-bezier(.4,0,.2,1);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg); color: var(--ink); line-height: 1.6;
+      -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+    a { color: var(--gold); text-decoration: none; }
+    ::selection { background: var(--gold); color: #0A0A0A; }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+    :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 6px; }
+
+    /* ── Nav (Sovereign palette) ── */
+    .nav { position: sticky; top: 0; z-index: 50; backdrop-filter: saturate(180%) blur(12px); background: rgba(10,10,10,.78); border-bottom: 1px solid var(--line); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; max-width: 1080px; margin: 0 auto; padding: 14px 24px; gap: 14px; }
+    .brand { display: flex; align-items: center; gap: 9px; font-weight: 600; font-size: 16px; letter-spacing: -0.3px; color: var(--ink); }
+    .brand .sv { color: var(--gold); font-weight: 500; }
+    .nav-right { display: flex; align-items: center; gap: 24px; }
+    .nav-links { display: flex; gap: 22px; font-size: 14px; font-weight: 500; }
+    .nav-links a { color: var(--muted); transition: color var(--ease); }
+    .nav-links a:hover, .nav-links a[aria-current="page"] { color: var(--ink); }
+
+    /* ── Buttons ── */
+    .btn { padding: 11px 20px; border-radius: 10px; font-size: 14.5px; font-weight: 600; font-family: inherit; border: 1.5px solid transparent; cursor: pointer; transition: background var(--ease), transform var(--ease), box-shadow var(--ease), border-color var(--ease), color var(--ease); display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+    .btn-primary { background: var(--gold); color: #0A0A0A; border-color: var(--gold); }
+    .btn-primary:hover { background: #D8B85C; transform: translateY(-1px); box-shadow: 0 10px 26px rgba(201,168,76,.22); }
+    .btn-sm { padding: 8px 16px; font-size: 14px; border-radius: 9px; }
+
+    /* ── Legal document ── */
+    .legal { padding: 56px 0 84px; }
+    .legal .wrap { max-width: 800px; }
+    .legal-head { border-bottom: 1px solid var(--line); padding-bottom: 28px; margin-bottom: 8px; }
+    .legal-head .eyebrow { display: inline-flex; align-items: center; gap: 7px; font-size: 12.5px; font-weight: 600; color: var(--gold); background: var(--gold-soft); border: 1px solid var(--gold-line); border-radius: 999px; padding: 5px 12px; margin-bottom: 20px; }
+    .legal-head .eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+    .legal-head h1 { font-size: clamp(28px, 6vw, 40px); font-weight: 800; letter-spacing: -1.2px; line-height: 1.1; margin-bottom: 16px; }
+    .legal-head .dates { display: flex; flex-wrap: wrap; gap: 6px 22px; color: var(--faint); font-size: 13.5px; }
+    .legal-head .dates b { color: var(--muted); font-weight: 600; }
+    .legal-body { margin-top: 6px; }
+    .legal-body .intro p { color: #CFC9BF; font-size: 16.5px; line-height: 1.7; margin-bottom: 16px; }
+    .legal-body h2 { font-size: clamp(19px, 4vw, 23px); font-weight: 700; letter-spacing: -.4px; color: var(--gold); margin: 42px 0 14px; }
+    .legal-body h3 { font-size: 16px; font-weight: 700; color: var(--ink); letter-spacing: -.2px; margin: 26px 0 12px; }
+    .legal-body p { color: #BDB8AE; font-size: 15.5px; line-height: 1.72; margin-bottom: 16px; }
+    .legal-body p strong, .legal-body li strong { color: var(--ink); font-weight: 600; }
+    .legal-body ul { list-style: none; margin: 0 0 16px; display: flex; flex-direction: column; gap: 10px; }
+    .legal-body li { position: relative; padding-left: 18px; color: #BDB8AE; font-size: 15.5px; line-height: 1.6; }
+    .legal-body li::before { content: ''; position: absolute; left: 2px; top: 10px; width: 5px; height: 5px; border-radius: 50%; background: var(--gold); opacity: .6; }
+    .legal-body hr { border: 0; border-top: 1px solid var(--line-2); margin: 34px 0; }
+    .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 8px 0 20px; border: 1px solid var(--line); border-radius: 12px; }
+    .legal-body table { width: 100%; min-width: 560px; border-collapse: collapse; font-size: 14px; }
+    .legal-body th, .legal-body td { text-align: left; padding: 11px 14px; border-bottom: 1px solid var(--line-2); vertical-align: top; color: #BDB8AE; line-height: 1.5; }
+    .legal-body th { background: var(--bg-2); color: var(--ink); font-weight: 600; font-size: 13px; }
+    .legal-body tr:last-child td { border-bottom: 0; }
+    .legal-contact { color: #BDB8AE; font-size: 15.5px; line-height: 1.85; }
+    .legal-back { display: inline-block; margin-top: 4px; font-size: 14px; color: var(--muted); }
+    .legal-back:hover { color: var(--gold); }
+
+    /* ── Footer ── */
+    footer { border-top: 1px solid var(--line); }
+    .foot-inner { max-width: 1080px; margin: 0 auto; padding: 28px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; color: var(--muted); font-size: 14px; }
+    .foot-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    .foot-links a { color: var(--muted); transition: color var(--ease); }
+    .foot-links a:hover { color: var(--gold); }
+
+    @media (max-width: 860px) { .nav-links { display: none; } .legal { padding: 44px 0 64px; } }
+    @media (max-width: 560px) { .foot-inner { justify-content: center; text-align: center; } }
+    @media (max-width: 380px) { .wrap { padding: 0 16px; } .nav-inner, .foot-inner { padding-left: 16px; padding-right: 16px; } }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition-duration: .001ms !important; } }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="/">
+        <svg width="30" height="30" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><polygon points="64,12 109,38 109,90 64,116 19,90 19,38" fill="#C9A84C"/><path d="M44 64 L58 78 L86 44" fill="none" stroke="#0A0A0A" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        MailFrame <span class="sv">Sovereign</span>
+      </a>
+      <div class="nav-right">
+        <div class="nav-links">
+          <a href="sovereign.html">Sovereign</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="faq.html">FAQ</a>
+        </div>
+        <a class="btn btn-primary btn-sm" href="sovereign.html#waitlist">Request access</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="legal">
+    <div class="wrap">
+      <div class="legal-head">
+        <span class="eyebrow"><span class="dot"></span> Legal</span>
+        <h1>Sovereign — Privacy Policy</h1>
+        <div class="dates">
+          <span><b>Last updated:</b> September 27, 2026</span>
+          <span><b>Effective date:</b> September 27, 2026</span>
+        </div>
+      </div>
+
+      <div class="legal-body">
+        <div class="intro">
+          <p>This Privacy Policy explains how ProofChain LLC ("ProofChain," "we," "us," "our") handles information in connection with Sovereign ("the Application"). ProofChain is a limited liability company registered in the State of Wyoming, United States.</p>
+          <p>Sovereign is designed to be <strong>local-first</strong>. Its central privacy principle is that your email content and the intelligence derived from it stay on your device. This policy is written to be accurate about that design, including its limits.</p>
+        </div>
+
+        <hr>
+
+        <h2>1. Summary in Plain Terms</h2>
+        <ul>
+          <li>Your emails, the summaries and data Sovereign derives from them, your relationships, commitments, calendar, and scores are stored <strong>only on your device</strong>, in a local database.</li>
+          <li>We do <strong>not</strong> operate a server that stores your email content.</li>
+          <li>To generate AI features, the text needed for a specific request is sent — through a privacy proxy we operate — to a third-party AI provider. The proxy is designed to strip identifying information and does not retain your content.</li>
+          <li>You connect your own email account using your own credentials.</li>
+          <li>We do <strong>not</strong> sell your data. We do <strong>not</strong> use your data to train AI models. We do <strong>not</strong> show advertising.</li>
+          <li>If you delete the Application, the locally stored data is removed with it.</li>
+        </ul>
+        <p>The sections below give the detail required for transparency and for compliance with the EU General Data Protection Regulation (GDPR) and similar laws.</p>
+
+        <hr>
+
+        <h2>2. Who Is the Data Controller</h2>
+        <p>For the limited personal data we process directly — principally your subscription and billing information, your activation record, and any support correspondence — ProofChain LLC is the data controller.</p>
+        <p>For the email content and derived data that Sovereign processes and stores <strong>locally on your device</strong>, you exercise practical control: that data does not reach our servers, and we cannot access it. You act as the controller of your own email content; Sovereign is the tool through which you process it.</p>
+        <p class="legal-contact">
+          <strong>Contact:</strong> <a href="mailto:support@mailframe.org">support@mailframe.org</a><br>
+          <strong>Registered address:</strong> 5830 E 2ND ST #7000, Casper, WY 82609, United States
+        </p>
+        <!-- INTERNAL EDITORIAL NOTE — not for publication. Preserved verbatim from source draft:
+        [REVIEW WITH COUNSEL: if you have significant EU users, consider whether an EU representative under GDPR Article 27 is required, and appoint one if so.]
+        -->
+
+        <hr>
+
+        <h2>3. What Data Is Involved, and Where It Lives</h2>
+
+        <h3>3.1 Data stored only on your device (not accessible to us)</h3>
+        <p>When you use Sovereign, the following are stored locally in a database on your device and are <strong>not transmitted to or stored by ProofChain</strong>:</p>
+        <ul>
+          <li>Email messages, threads, subjects, senders, and body content fetched from your connected account(s)</li>
+          <li>Summaries, briefs, classifications, and other AI-derived outputs</li>
+          <li>Relationship health data, commitment records, and calendar/event data derived from your email</li>
+          <li>Your Sovereign Score and related metrics</li>
+          <li>Behavioral observations used to calibrate the Application to your patterns</li>
+          <li>Your settings and preferences</li>
+          <li>Your email provider access tokens, stored in your operating system's secure credential store</li>
+        </ul>
+        <p>We cannot see, retrieve, or recover any of this data. If you lose your device or delete the Application, we cannot restore it.</p>
+
+        <h3>3.2 Data processed to deliver AI features</h3>
+        <p>Some Sovereign features (such as generating a brief or synthesizing a situation) require AI processing that does not run on your device. For those features:</p>
+        <ul>
+          <li>The specific text needed for the request is sent from your device to a <strong>privacy proxy</strong> operated by ProofChain.</li>
+          <li>The proxy forwards the request to a leading, U.S.-based AI provider under an enterprise agreement, using our credentials, so that your identity and the provider's credentials are not linked to your content. Our agreement with this provider contractually prohibits the use of your content to train AI models.</li>
+          <li>The proxy is designed to strip identifying request metadata and does <strong>not</strong> store the content of your requests or their outputs. Its logging is content-free.</li>
+          <li>The third-party AI provider processes the request to generate a response and, under our agreement with them, does not use the input or output to train their models and retains it only briefly in accordance with their API privacy terms.</li>
+        </ul>
+        <p><strong>We are transparent that this is a real data flow:</strong> to deliver AI features, the relevant text does leave your device and is processed by a third party. "Local-first" means your data is not stored off your device and no AI-provider credentials are held on your device — it does not mean that no data ever leaves your device. Features that rely on this flow are identifiable within the Application, and certain categories of your data can be excluded from AI access through the Application's settings.</p>
+
+        <h3>3.3 Data we process directly (on our systems)</h3>
+        <p>We process a limited set of personal data to run the business:</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Data</th><th>Purpose</th><th>Where</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Email address, activation code, subscription status</td><td>Account activation and access control</td><td>Our activation service</td></tr>
+              <tr><td>Payment details, billing history</td><td>Processing your subscription</td><td>Stripe (we do not store card numbers)</td></tr>
+              <tr><td>Referral records (issuer and referred email, status)</td><td>Operating the referral program</td><td>Our activation service</td></tr>
+              <tr><td>Waitlist submissions (email, profession, description)</td><td>Managing access requests</td><td>Our waitlist provider</td></tr>
+              <tr><td>Support correspondence</td><td>Responding to you</td><td>Our email/support system</td></tr>
+              <tr><td>Crash and error reports (production only, opt-in)</td><td>Diagnosing faults</td><td>Our error-monitoring provider; metadata only, no email content</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <hr>
+
+        <h2>4. Legal Bases for Processing (GDPR)</h2>
+        <p>Where GDPR applies, we rely on the following legal bases:</p>
+        <ul>
+          <li><strong>Performance of a contract</strong> — to activate your account, process payment, and provide the Application.</li>
+          <li><strong>Legitimate interests</strong> — to secure the Application, prevent abuse of the referral program, and diagnose faults, balanced against your rights.</li>
+          <li><strong>Consent</strong> — for optional features you explicitly enable, such as the weekly digest email or crash reporting, and for any AI processing of categories you have chosen to include. You may withdraw consent at any time.</li>
+          <li><strong>Legal obligation</strong> — where we must retain records for tax or accounting purposes.</li>
+        </ul>
+
+        <hr>
+
+        <h2>5. Third-Party Processors</h2>
+        <p>We rely on the following third parties. Each processes only what is necessary for its function:</p>
+        <ul>
+          <li><strong>Stripe, Inc.</strong> — payment processing.</li>
+          <li><strong>Our AI provider</strong> — a leading U.S.-based AI company, engaged under an enterprise agreement that prohibits training on your content and provides for only brief, API-level retention; AI processing of the text sent for AI features occurs via our privacy proxy.</li>
+          <li><strong>Our hosting/proxy provider</strong> — operating the privacy proxy and activation service.</li>
+          <li><strong>Our email delivery provider</strong> — sending the optional weekly digest and transactional email.</li>
+          <li><strong>Our error-monitoring provider</strong> — production crash reporting (opt-in, metadata only).</li>
+          <li><strong>Google</strong> — where you connect a Gmail account, Sovereign interacts with Google's APIs on your behalf, under Google's own terms.</li>
+        </ul>
+        <!-- INTERNAL EDITORIAL NOTE — not for publication. Preserved verbatim from source draft:
+        [REVIEW WITH COUNSEL: confirm each named processor, ensure a Data Processing Agreement is in place with each, and confirm the transfer mechanism for any processing outside the EU/EEA, e.g. Standard Contractual Clauses.]
+        -->
+
+        <hr>
+
+        <h2>6. International Transfers</h2>
+        <p>ProofChain is established in the United States, and some processors operate outside the European Economic Area. Where your personal data is transferred outside the EEA, we rely on appropriate safeguards such as the European Commission's Standard Contractual Clauses or an equivalent mechanism.<!-- INTERNAL EDITORIAL NOTE — not for publication. Source draft here read: [REVIEW WITH COUNSEL.] --></p>
+        <p>Note that your email content and derived data, being stored locally on your device, are not subject to any such transfer by us — they remain where your device is.</p>
+
+        <hr>
+
+        <h2>7. Data Retention</h2>
+        <ul>
+          <li><strong>On-device data:</strong> retained on your device until you delete it or uninstall the Application. We have no role in its retention.</li>
+          <li><strong>Account and subscription data:</strong> retained for the life of your subscription and for as long afterward as required for legal, tax, and accounting purposes.</li>
+          <li><strong>Waitlist data:</strong> retained until you are admitted or until you ask us to remove it.</li>
+          <li><strong>Privacy proxy:</strong> does not retain the content of AI requests.</li>
+          <li><strong>Error reports:</strong> retained for a limited diagnostic period.</li>
+        </ul>
+
+        <hr>
+
+        <h2>8. Your Rights</h2>
+        <p>Where GDPR or a comparable law applies, you have the right to:</p>
+        <ul>
+          <li>access the personal data we hold about you;</li>
+          <li>rectify inaccurate data;</li>
+          <li>erase your data ("right to be forgotten");</li>
+          <li>restrict or object to processing;</li>
+          <li>data portability;</li>
+          <li>withdraw consent for consent-based processing;</li>
+          <li>lodge a complaint with your local data protection authority.</li>
+        </ul>
+        <p>Because most of the data Sovereign generates lives only on your device, you can exercise access, portability, and erasure over that data directly: the Application provides an export function, and uninstalling removes it. For the limited account, billing, and waitlist data we hold, contact us at <a href="mailto:support@mailframe.org">support@mailframe.org</a> and we will respond within the period required by law.</p>
+
+        <hr>
+
+        <h2>9. Security</h2>
+        <ul>
+          <li>On-device data is stored in a local database; your email access tokens are held in your operating system's secure credential store.</li>
+          <li>Optional application-lock features (PIN, and platform biometric where available) can restrict access to the Application, and, where enabled, encrypt the local database at rest.</li>
+          <li>Communication with the privacy proxy and with third-party services uses encrypted connections.</li>
+          <li>We apply reasonable technical and organizational measures to the limited data we process directly.</li>
+        </ul>
+        <p>No method of storage or transmission is completely secure, and we cannot guarantee absolute security.</p>
+
+        <hr>
+
+        <h2>10. Children</h2>
+        <p>Sovereign is not intended for anyone under 18, and we do not knowingly process the data of children.</p>
+
+        <hr>
+
+        <h2>11. No Sale of Data, No Ad Targeting, No Model Training</h2>
+        <p>We do not sell your personal data. We do not use it for advertising. We do not use your email content or derived data to train AI models, and our agreement with our AI provider prohibits them from doing so with content sent through our proxy.</p>
+
+        <hr>
+
+        <h2>12. Changes to This Policy</h2>
+        <p>We may update this Policy. Where changes are material, we will notify you through the Application or by email. The "last updated" date reflects the latest revision.</p>
+
+        <hr>
+
+        <h2>13. Contact</h2>
+        <p class="legal-contact">
+          ProofChain LLC<br>
+          5830 E 2ND ST #7000, Casper, WY 82609, United States<br>
+          Data enquiries: <a href="mailto:support@mailframe.org">support@mailframe.org</a>
+        </p>
+
+        <hr>
+
+        <!-- INTERNAL EDITORIAL NOTE — not for publication. Preserved verbatim from source draft:
+        This document is a founder-prepared draft and does not constitute legal advice. It should be reviewed by qualified legal counsel before publication, with particular attention to GDPR controller/processor characterization, the legal basis analysis, international transfer mechanisms, Data Processing Agreements with each named processor, the possible need for an Article 27 EU representative, and accurate description of each third party actually used.
+        -->
+
+        <a class="legal-back" href="sovereign.html">← Back to Sovereign</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="foot-inner">
+      <a class="brand" href="/" style="font-weight:500;color:var(--muted)">
+        <svg width="20" height="20" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><polygon points="64,12 109,38 109,90 64,116 19,90 19,38" fill="#C9A84C"/><path d="M44 64 L58 78 L86 44" fill="none" stroke="#0A0A0A" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        © 2026 ProofChain LLC · MailFrame
+      </a>
+      <div class="foot-links">
+        <a href="sovereign.html">Sovereign</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="sovereign-privacy.html" aria-current="page">Privacy</a>
+        <a href="sovereign-terms.html">Terms</a>
+        <a href="faq.html">FAQ</a>
+        <a href="mailto:support@mailframe.org">support@mailframe.org</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

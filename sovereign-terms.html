@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sovereign — Terms of Service</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta name="description" content="Terms of Service for MailFrame Sovereign, the local-first desktop intelligence layer by ProofChain LLC.">
+  <link rel="canonical" href="https://mailframe.org/sovereign-terms">
+  <meta name="robots" content="noindex, follow">
+  <meta name="theme-color" content="#0A0A0A">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --gold: #C9A84C; --gold-d: #A8892F; --gold-soft: rgba(201,168,76,.12); --gold-line: rgba(201,168,76,.28);
+      --bg: #0A0A0A; --bg-1: #101010; --bg-2: #151515;
+      --ink: #F4F1EA; --muted: #9A968D; --faint: #6C6961;
+      --line: rgba(255,255,255,.09); --line-2: rgba(255,255,255,.06);
+      --radius: 16px; --ease: .18s cubic-bezier(.4,0,.2,1);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg); color: var(--ink); line-height: 1.6;
+      -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+    a { color: var(--gold); text-decoration: none; }
+    ::selection { background: var(--gold); color: #0A0A0A; }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+    :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 6px; }
+
+    /* ── Nav (Sovereign palette) ── */
+    .nav { position: sticky; top: 0; z-index: 50; backdrop-filter: saturate(180%) blur(12px); background: rgba(10,10,10,.78); border-bottom: 1px solid var(--line); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; max-width: 1080px; margin: 0 auto; padding: 14px 24px; gap: 14px; }
+    .brand { display: flex; align-items: center; gap: 9px; font-weight: 600; font-size: 16px; letter-spacing: -0.3px; color: var(--ink); }
+    .brand .sv { color: var(--gold); font-weight: 500; }
+    .nav-right { display: flex; align-items: center; gap: 24px; }
+    .nav-links { display: flex; gap: 22px; font-size: 14px; font-weight: 500; }
+    .nav-links a { color: var(--muted); transition: color var(--ease); }
+    .nav-links a:hover, .nav-links a[aria-current="page"] { color: var(--ink); }
+
+    /* ── Buttons ── */
+    .btn { padding: 11px 20px; border-radius: 10px; font-size: 14.5px; font-weight: 600; font-family: inherit; border: 1.5px solid transparent; cursor: pointer; transition: background var(--ease), transform var(--ease), box-shadow var(--ease), border-color var(--ease), color var(--ease); display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+    .btn-primary { background: var(--gold); color: #0A0A0A; border-color: var(--gold); }
+    .btn-primary:hover { background: #D8B85C; transform: translateY(-1px); box-shadow: 0 10px 26px rgba(201,168,76,.22); }
+    .btn-sm { padding: 8px 16px; font-size: 14px; border-radius: 9px; }
+
+    /* ── Legal document ── */
+    .legal { padding: 56px 0 84px; }
+    .legal .wrap { max-width: 800px; }
+    .legal-head { border-bottom: 1px solid var(--line); padding-bottom: 28px; margin-bottom: 8px; }
+    .legal-head .eyebrow { display: inline-flex; align-items: center; gap: 7px; font-size: 12.5px; font-weight: 600; color: var(--gold); background: var(--gold-soft); border: 1px solid var(--gold-line); border-radius: 999px; padding: 5px 12px; margin-bottom: 20px; }
+    .legal-head .eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+    .legal-head h1 { font-size: clamp(28px, 6vw, 40px); font-weight: 800; letter-spacing: -1.2px; line-height: 1.1; margin-bottom: 16px; }
+    .legal-head .dates { display: flex; flex-wrap: wrap; gap: 6px 22px; color: var(--faint); font-size: 13.5px; }
+    .legal-head .dates b { color: var(--muted); font-weight: 600; }
+    .legal-body { margin-top: 6px; }
+    .legal-body .intro p { color: #CFC9BF; font-size: 16.5px; line-height: 1.7; margin-bottom: 16px; }
+    .legal-body h2 { font-size: clamp(19px, 4vw, 23px); font-weight: 700; letter-spacing: -.4px; color: var(--gold); margin: 42px 0 14px; }
+    .legal-body h3 { font-size: 16px; font-weight: 700; color: var(--ink); letter-spacing: -.2px; margin: 26px 0 12px; }
+    .legal-body p { color: #BDB8AE; font-size: 15.5px; line-height: 1.72; margin-bottom: 16px; }
+    .legal-body p strong, .legal-body li strong { color: var(--ink); font-weight: 600; }
+    .legal-body ul { list-style: none; margin: 0 0 16px; display: flex; flex-direction: column; gap: 10px; }
+    .legal-body li { position: relative; padding-left: 18px; color: #BDB8AE; font-size: 15.5px; line-height: 1.6; }
+    .legal-body li strong { color: var(--ink); }
+    .legal-body li::before { content: ''; position: absolute; left: 2px; top: 10px; width: 5px; height: 5px; border-radius: 50%; background: var(--gold); opacity: .6; }
+    .legal-body hr { border: 0; border-top: 1px solid var(--line-2); margin: 34px 0; }
+    .legal-contact { color: #BDB8AE; font-size: 15.5px; line-height: 1.85; }
+    .legal-back { display: inline-block; margin-top: 4px; font-size: 14px; color: var(--muted); }
+    .legal-back:hover { color: var(--gold); }
+
+    /* ── Footer ── */
+    footer { border-top: 1px solid var(--line); }
+    .foot-inner { max-width: 1080px; margin: 0 auto; padding: 28px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; color: var(--muted); font-size: 14px; }
+    .foot-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    .foot-links a { color: var(--muted); transition: color var(--ease); }
+    .foot-links a:hover { color: var(--gold); }
+
+    @media (max-width: 860px) { .nav-links { display: none; } .legal { padding: 44px 0 64px; } }
+    @media (max-width: 560px) { .foot-inner { justify-content: center; text-align: center; } }
+    @media (max-width: 380px) { .wrap { padding: 0 16px; } .nav-inner, .foot-inner { padding-left: 16px; padding-right: 16px; } }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition-duration: .001ms !important; } }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="/">
+        <svg width="30" height="30" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><polygon points="64,12 109,38 109,90 64,116 19,90 19,38" fill="#C9A84C"/><path d="M44 64 L58 78 L86 44" fill="none" stroke="#0A0A0A" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        MailFrame <span class="sv">Sovereign</span>
+      </a>
+      <div class="nav-right">
+        <div class="nav-links">
+          <a href="sovereign.html">Sovereign</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="faq.html">FAQ</a>
+        </div>
+        <a class="btn btn-primary btn-sm" href="sovereign.html#waitlist">Request access</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="legal">
+    <div class="wrap">
+      <div class="legal-head">
+        <span class="eyebrow"><span class="dot"></span> Legal</span>
+        <h1>Sovereign — Terms of Service</h1>
+        <div class="dates">
+          <span><b>Last updated:</b> September 27, 2026</span>
+          <span><b>Effective date:</b> September 27, 2026</span>
+        </div>
+      </div>
+
+      <div class="legal-body">
+        <div class="intro">
+          <p>These Terms of Service ("Terms") govern your access to and use of Sovereign ("Sovereign," "the Application," "the Software"), a desktop application provided by ProofChain LLC ("ProofChain," "we," "us," "our"), a limited liability company registered in the State of Wyoming, United States.</p>
+          <p>By downloading, installing, activating, or using Sovereign, you ("you," "the User") agree to be bound by these Terms. If you do not agree, do not install or use the Application.</p>
+        </div>
+
+        <hr>
+
+        <h2>1. The Application</h2>
+        <p>Sovereign is a desktop application that connects to your email account(s) and provides an intelligence layer over your inbox, including summarization, prioritization, relationship tracking, commitment tracking, calendar extraction, and related productivity features.</p>
+        <p>Sovereign is a <strong>local-first application</strong>. Your email content, derived data, and application state are stored locally on your device. ProofChain does not operate a server that stores your email content or the intelligence derived from it. Certain features route data through a privacy proxy operated by ProofChain solely to enable AI processing, as described in the Privacy Policy.</p>
+
+        <hr>
+
+        <h2>2. Eligibility and Access</h2>
+        <p><strong>2.1 Invitation-only access.</strong> Sovereign is currently distributed on an invitation-only basis. Access requires a valid activation code. ProofChain reserves the right to determine, in its sole discretion, who is granted access, and to limit the total number of active users.</p>
+        <p><strong>2.2 Age.</strong> You must be at least 18 years old to use Sovereign.</p>
+        <p><strong>2.3 Account responsibility.</strong> You are responsible for maintaining the confidentiality of your activation code and for all activity that occurs under your account. You agree to notify us promptly of any unauthorized use.</p>
+        <p><strong>2.4 One activation per subscription.</strong> Unless otherwise stated in your plan, each subscription entitles you to use Sovereign on a single platform. A subscription does not automatically grant simultaneous access across multiple operating systems.</p>
+
+        <hr>
+
+        <h2>3. Subscription, Payment, and Renewal</h2>
+        <p><strong>3.1 Fees.</strong> Sovereign is offered on a subscription basis at the prices published at the point of purchase. Current pricing is EUR 129 per month or EUR 1,290 per year, subject to change on notice.</p>
+        <p><strong>3.2 Billing.</strong> Payment is processed by our third-party payment provider, Stripe, Inc. By subscribing, you agree to Stripe's terms and authorize recurring charges to your payment method until you cancel.</p>
+        <p><strong>3.3 Automatic renewal.</strong> Subscriptions renew automatically at the end of each billing period unless cancelled before the renewal date. You may cancel at any time through the subscription management portal; cancellation takes effect at the end of the current billing period.</p>
+        <p><strong>3.4 Refunds.</strong> Except where required by applicable law, subscription fees are non-refundable once a billing period has begun. Where you are a consumer resident in the European Union, statutory withdrawal rights may apply as described in Section 4.</p>
+        <p><strong>3.5 Price changes.</strong> We may change subscription prices. Any change will apply from your next billing period, and we will give you reasonable advance notice.</p>
+        <p><strong>3.6 Taxes.</strong> Prices are exclusive of applicable taxes unless stated otherwise. You are responsible for any taxes, levies, or duties imposed by your jurisdiction.</p>
+
+        <hr>
+
+        <h2>4. EU Consumer Withdrawal Rights</h2>
+        <p>If you are a consumer resident in the European Union, you have a statutory right to withdraw from a purchase within fourteen (14) days without giving a reason.</p>
+        <p>However, for digital content and services supplied immediately, you acknowledge and agree that by activating Sovereign and beginning to use it during the withdrawal period, you expressly request immediate performance and acknowledge that you thereby lose your right of withdrawal once the service has been fully provided.</p>
+        <p>Nothing in these Terms limits any non-waivable statutory rights you have as a consumer under the law of your country of residence.</p>
+
+        <hr>
+
+        <h2>5. Referral Program</h2>
+        <p>Where a referral program is offered, the following apply:</p>
+        <p><strong>5.1</strong> Referral rewards are earned only when a referred user completes their first paid billing period. Rewards are not earned at signup.</p>
+        <p><strong>5.2</strong> Referral eligibility, reward amounts, and limits are as published within the Application and may be changed or withdrawn at any time.</p>
+        <p><strong>5.3</strong> Referral rewards have no cash-equivalent value except where explicitly stated, and may not be sold, transferred, or combined except as we permit.</p>
+        <p><strong>5.4</strong> We reserve the right to withhold rewards and suspend access where we reasonably believe the referral program is being abused, including through fraudulent, automated, or self-referral activity.</p>
+
+        <hr>
+
+        <h2>6. Your Email Data and Third-Party Services</h2>
+        <p><strong>6.1 Your credentials.</strong> To use Sovereign, you connect your own email account(s) using credentials you supply. You are responsible for ensuring you are permitted to connect those accounts and to process the email within them.</p>
+        <p><strong>6.2 Third-party terms.</strong> Your use of connected services (such as Google Gmail) remains subject to those services' own terms. Sovereign accesses those services on your behalf and at your direction.</p>
+        <p><strong>6.3 Your responsibility for content.</strong> You are solely responsible for the email content you process through Sovereign and for compliance with any confidentiality, privacy, or contractual obligations attaching to that content.</p>
+
+        <hr>
+
+        <h2>7. Acceptable Use</h2>
+        <p>You agree not to:</p>
+        <ul>
+          <li>reverse engineer, decompile, or attempt to extract the source code of the Application, except to the extent this restriction is prohibited by applicable law;</li>
+          <li>circumvent, disable, or interfere with the activation, licensing, or security mechanisms of the Application;</li>
+          <li>resell, sublicense, rent, or redistribute the Application or access to it;</li>
+          <li>use the Application to process content you are not lawfully entitled to access;</li>
+          <li>use the Application in any manner that violates applicable law or the rights of others;</li>
+          <li>use the Application to build a competing product or to train a competing model.</li>
+        </ul>
+
+        <hr>
+
+        <h2>8. Intellectual Property</h2>
+        <p><strong>8.1 Ownership.</strong> The Application, including all software, design, the Sovereign framework and methodology, documentation, and associated intellectual property, is owned by ProofChain LLC and is protected by copyright and other laws. These Terms grant you a limited, non-exclusive, non-transferable, revocable license to use the Application for your own use in accordance with these Terms. No other rights are granted.</p>
+        <p><strong>8.2 Your data.</strong> ProofChain claims no ownership over your email content or the data you process through the Application.</p>
+        <p><strong>8.3 Feedback.</strong> If you provide feedback or suggestions, you grant us a perpetual, royalty-free license to use them without obligation to you.</p>
+
+        <hr>
+
+        <h2>9. AI-Generated Output</h2>
+        <p><strong>9.1</strong> Sovereign uses artificial intelligence to generate summaries, briefs, classifications, and other outputs. AI-generated output may contain errors, omissions, or inaccuracies.</p>
+        <p><strong>9.2</strong> You are responsible for verifying any AI-generated output before relying on it. Sovereign is a productivity aid and does not replace your own judgment. Do not rely on Sovereign's output for legal, financial, medical, or other decisions without independent verification.</p>
+        <p><strong>9.3</strong> The Sovereign Score, relationship health indicators, and similar derived metrics are informational only and are not guarantees, professional assessments, or certifications of any kind.</p>
+
+        <hr>
+
+        <h2>10. Availability and Changes</h2>
+        <p><strong>10.1</strong> We may modify, suspend, or discontinue the Application or any feature at any time. Where a change materially reduces the core functionality of a paid subscription, we will provide reasonable notice and, where appropriate, a pro-rata refund.</p>
+        <p><strong>10.2</strong> Certain features depend on third-party services (email providers, AI providers, payment processors). We are not responsible for interruptions caused by those services.</p>
+        <p><strong>10.3</strong> The Application includes an automatic update mechanism. By using the Application you consent to the installation of updates.</p>
+
+        <hr>
+
+        <h2>11. Disclaimers</h2>
+        <p>THE APPLICATION IS PROVIDED "AS IS" AND "AS AVAILABLE," WITHOUT WARRANTIES OF ANY KIND, WHETHER EXPRESS, IMPLIED, OR STATUTORY, INCLUDING WITHOUT LIMITATION IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT, TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW.</p>
+        <p>We do not warrant that the Application will be uninterrupted, error-free, or free of harmful components, or that any output will be accurate or reliable.</p>
+        <p>Nothing in this Section excludes or limits any warranty or right that cannot be excluded or limited under applicable law, including non-waivable consumer rights.</p>
+
+        <hr>
+
+        <h2>12. Limitation of Liability</h2>
+        <p>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, PROOFCHAIN LLC SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS, DATA, GOODWILL, OR BUSINESS OPPORTUNITY, ARISING OUT OF OR RELATED TO YOUR USE OF THE APPLICATION.</p>
+        <p>OUR TOTAL AGGREGATE LIABILITY ARISING OUT OF OR RELATED TO THESE TERMS OR THE APPLICATION SHALL NOT EXCEED THE AMOUNT YOU PAID TO US IN THE TWELVE (12) MONTHS PRECEDING THE EVENT GIVING RISE TO THE LIABILITY.</p>
+        <p>Nothing in this Section limits liability that cannot be limited under applicable law, including liability for death or personal injury caused by negligence, for fraud, or for any non-waivable consumer rights.</p>
+
+        <hr>
+
+        <h2>13. Indemnification</h2>
+        <p>You agree to indemnify and hold harmless ProofChain LLC from any claims, damages, or expenses arising out of your misuse of the Application, your violation of these Terms, or your violation of any law or third-party right, to the extent permitted by applicable law.</p>
+
+        <hr>
+
+        <h2>14. Termination</h2>
+        <p><strong>14.1</strong> We may suspend or terminate your access if you breach these Terms, if your subscription lapses, or if we discontinue the Application.</p>
+        <p><strong>14.2</strong> You may stop using the Application at any time. To remove your data, delete the Application from your device; because Sovereign is local-first, this removes the locally stored data.</p>
+        <p><strong>14.3</strong> Sections that by their nature should survive termination (including Intellectual Property, Disclaimers, Limitation of Liability, and Indemnification) will survive.</p>
+
+        <hr>
+
+        <h2>15. Governing Law and Disputes</h2>
+        <p><strong>15.1</strong> These Terms are governed by the laws of the State of Wyoming, United States, without regard to its conflict-of-law rules.</p>
+        <p><strong>15.2</strong> Where you are a consumer, this choice of law does not deprive you of the protection afforded by mandatory provisions of the law of your country of residence, and you may be entitled to bring proceedings in your local courts.</p>
+        <!-- INTERNAL EDITORIAL NOTE — not for publication. Preserved verbatim from source draft:
+        15.3 [REVIEW WITH COUNSEL: consider whether to include an arbitration clause, a jurisdiction clause, and reference to the EU Online Dispute Resolution platform for EU consumers.]
+        -->
+
+        <hr>
+
+        <h2>16. Changes to These Terms</h2>
+        <p>We may update these Terms from time to time. Where changes are material, we will provide reasonable notice through the Application or by email. Your continued use after the effective date constitutes acceptance.</p>
+
+        <hr>
+
+        <h2>17. Contact</h2>
+        <p class="legal-contact">
+          ProofChain LLC<br>
+          5830 E 2ND ST #7000, Casper, WY 82609, United States<br>
+          Email: <a href="mailto:support@mailframe.org">support@mailframe.org</a>
+        </p>
+
+        <hr>
+
+        <!-- INTERNAL EDITORIAL NOTE — not for publication. Preserved verbatim from source draft:
+        This document is a founder-prepared draft and does not constitute legal advice. It should be reviewed by qualified legal counsel before it is relied upon, particularly regarding EU consumer law, GDPR interaction, refund terms, dispute resolution, and the enforceability of the liability and warranty provisions.
+        -->
+
+        <a class="legal-back" href="sovereign.html">← Back to Sovereign</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="foot-inner">
+      <a class="brand" href="/" style="font-weight:500;color:var(--muted)">
+        <svg width="20" height="20" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><polygon points="64,12 109,38 109,90 64,116 19,90 19,38" fill="#C9A84C"/><path d="M44 64 L58 78 L86 44" fill="none" stroke="#0A0A0A" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        © 2026 ProofChain LLC · MailFrame
+      </a>
+      <div class="foot-links">
+        <a href="sovereign.html">Sovereign</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="sovereign-privacy.html">Privacy</a>
+        <a href="sovereign-terms.html" aria-current="page">Terms</a>
+        <a href="faq.html">FAQ</a>
+        <a href="mailto:support@mailframe.org">support@mailframe.org</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

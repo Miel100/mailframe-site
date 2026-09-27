@@ -6,6 +6,7 @@
 
 - [Home](https://mailframe.org/): Product overview and features
 - [Pricing](https://mailframe.org/pricing.html): Free, Pro ($12/mo), and Business ($79/mo) plans
+- [Sovereign](https://mailframe.org/sovereign.html): Private, local-first desktop intelligence layer for inbox and calendar — briefs the week, tracks commitments, protects deep-work time; invitation only, €129/month
 - [FAQ](https://mailframe.org/faq.html): Install, activation, privacy, supported languages, plans, and troubleshooting
 - [Privacy Policy](https://mailframe.org/privacy.html): How your data is handled
 - [Terms of Service](https://mailframe.org/terms.html): Terms governing use of the extension and website
